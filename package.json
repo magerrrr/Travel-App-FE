@@ -1,0 +1,43 @@
+{
+  "name": "travel-app",
+  "version": "1.0.0",
+  "description": "Application for virtual travel around the world.",
+  "main": "index.js",
+  "keywords": ["travel", "world", "virtual tour", "rss", "travel-app", "rolling-scopes-school"],
+  "author": "Mager Kirill",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "build-dev": "webpack --mode development",
+    "build-prod": "webpack --mode production",
+    "start": "webpack serve --hot --mode development",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-hot-loader": "^4.13.0",
+    "@material-ui/core": "^4.11.3",
+    "fontsource-roboto": "^4.0.0",
+    "@material-ui/icons": "^4.11.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "@hot-loader/react-dom": "^17.0.1+4.13.0",
+    "webpack-dev-server": "^3.11.2",
+    "jest": "^26.6.3",
+    "babel-jest": "^26.6.3",
+    "typescript": "^4.2.3",
+    "ts-loader": "^8.0.17",
+    "file-loader": "^6.2.0",
+    "url-loader": "^4.1.1",
+    "prettier": "^2.2.1"
+  }
+}

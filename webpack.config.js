@@ -66,6 +66,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      inject: 'body',
       filename: 'index.html',
       template: 'src/index.html',
     }),

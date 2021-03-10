@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Intro: React.FC = (props) => {
+const Intro: React.FC = () => {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
   return (

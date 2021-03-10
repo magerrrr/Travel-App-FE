@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-  makeStyles, Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,6 +9,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Link from '@material-ui/core/Link';
+import { useTranslation } from "react-i18next";
+
 import './Header.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -78,10 +78,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Header: React.FC = () => {
   const classes = useStyles();
-  const [lang, setLang] = React.useState('');
+  const { t, i18n } = useTranslation();
+
+  const [lang, setLang] = React.useState(i18n.languages[0]);
 
   const handleChange = (event: any) => {
-    setLang(event.target.value);
+    let newlang = event.target.value;
+    setLang(newlang);
+    i18n.changeLanguage(newlang);
   };
 
   return (
@@ -103,11 +107,9 @@ const Header: React.FC = () => {
                 value={lang}
                 onChange={handleChange}
               >
-                <MenuItem className={classes.menuItem} value=''>
-                  EN
-                </MenuItem>
-                <MenuItem className={classes.menuItem} value={20}>RU</MenuItem>
-                <MenuItem className={classes.menuItem} value={30}>SP</MenuItem>
+                <MenuItem className={classes.menuItem} value='en'>EN</MenuItem>
+                <MenuItem className={classes.menuItem} value='ru'>RU</MenuItem>
+                <MenuItem className={classes.menuItem} value='es'>ES</MenuItem>
               </Select>
             </FormControl>
             <Link
@@ -115,7 +117,7 @@ const Header: React.FC = () => {
               variant='body2'
               onClick={() => { }}
             >
-              Log In
+              {t("login")}
             </Link>
             <IconButton
               edge='end'

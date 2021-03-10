@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslation } from "react-i18next";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { fade, makeStyles, Theme } from '@material-ui/core/styles';
@@ -11,15 +12,17 @@ import image from '../../assets/img/travel_app.jpg';
 import './Intro.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
+  introBox: {
+    width: '30%',
+  },
   introText: {
     marginRight: '2rem',
     marginBottom: '2rem',
     fontSize: '3em',
-    overflowWrap: 'break-word',
-    width: '280px',
+    width: '100%',
   },
   introImg: {
-    width: '50vw',
+    width: '70%',
     '& img': {
       width: '100%',
     },
@@ -61,17 +64,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     color: '#100774',
     [theme.breakpoints.up('sm')]: {
-      width: '100px',
-
+      width: '150px',
       '&:focus': {
-        width: '20ch',
+        width: '30ch',
       },
     },
   },
 }));
 
-const Intro: React.FC = () => {
+const Intro: React.FC = (props) => {
   const classes = useStyles();
+  const { t, i18n } = useTranslation();
   return (
     <Container maxWidth='lg' className='intro'>
       <Grid
@@ -80,8 +83,11 @@ const Intro: React.FC = () => {
         justify='center'
         alignItems='center'
       >
-        <Box display='flex' flexDirection='column'>
-          <div className={classes.introText}>Explore The World!</div>
+        <Box className={classes.introBox} display='flex' flexDirection='column'>
+          <div className={classes.introText}>
+            <div >{t("IntroductionLeft")}</div>
+            <div >{t("IntroductionRight")}</div>
+          </div>
           <div className={classes.search}>
             <TextField
               type='search'
@@ -89,7 +95,7 @@ const Intro: React.FC = () => {
               margin='normal'
               autoComplete='off'
               autoFocus
-              placeholder='Search...'
+              placeholder={t("search")}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start'>

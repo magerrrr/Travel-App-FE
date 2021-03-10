@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const Header: React.FC = () => {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
-
+  console.log(i18n.languages);
   const [lang, setLang] = React.useState(i18n.languages[0]);
 
   const handleChange = (event: any) => {

@@ -13,7 +13,7 @@ import './Intro.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
   introBox: {
-    width: '30%',
+    minWidth: '30%',
   },
   introText: {
     marginRight: '2rem',
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
   },
   introImg: {
-    width: '70%',
+    height: '90vh',
     '& img': {
       width: '100%',
     },

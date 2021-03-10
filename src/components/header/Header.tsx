@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  makeStyles, MuiThemeProvider, createMuiTheme, Theme,
+  makeStyles, Theme,
 } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,6 +11,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Link from '@material-ui/core/Link';
+import './Header.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
@@ -47,10 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
+    display: 'flex',
   },
   formControl: {
     margin: theme.spacing(1),
@@ -78,34 +76,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const theme = createMuiTheme({});
-
-theme.overrides = {
-  MuiOutlinedInput: {
-    root: {
-
-      borderRadius: '5px',
-      '& $notchedOutline': {
-        borderColor: '#fff',
-      },
-      '&:hover $notchedOutline': {
-        borderColor: '#fff',
-      },
-      '&$focused $notchedOutline': {
-        borderColor: '#fff',
-      },
-    },
-  },
-  MuiSelect: {
-    select: {
-      '&:focus': {
-        backgroundColor: 'inherit',
-      },
-    },
-  },
-
-};
-
 const Header: React.FC = () => {
   const classes = useStyles();
   const [lang, setLang] = React.useState('');
@@ -115,54 +85,51 @@ const Header: React.FC = () => {
   };
 
   return (
-    <MuiThemeProvider theme={theme}>
-      <div className={classes.grow}>
-        <AppBar className={classes.header} position='static'>
-          <Toolbar>
-            <Typography className={classes.title} variant='h1' noWrap>
-              Travel App
-            </Typography>
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <FormControl variant='outlined' className={classes.formControl}>
-                <Select
-                  classes={{
-                    root: classes.select,
-                    icon: classes.selectIcon,
-                  }}
-                  displayEmpty
-                  value={lang}
-                  onChange={handleChange}
-                >
-                  <MenuItem className={classes.menuItem} value=''>
-                    EN
-                  </MenuItem>
-
-                  <MenuItem className={classes.menuItem} value={20}>RU</MenuItem>
-                  <MenuItem className={classes.menuItem} value={30}>SP</MenuItem>
-                </Select>
-              </FormControl>
-              <Link
-                component='button'
-                variant='body2'
-                onClick={() => {}}
+    <div className={classes.grow}>
+      <AppBar className={classes.header} position='static'>
+        <Toolbar>
+          <Typography className={classes.title} variant='h1' noWrap>
+            Travel App
+          </Typography>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <Select
+                classes={{
+                  root: classes.select,
+                  icon: classes.selectIcon,
+                }}
+                displayEmpty
+                value={lang}
+                onChange={handleChange}
               >
-                Log In
-              </Link>
-              <IconButton
-                edge='end'
-                aria-label='account of current user'
-                aria-haspopup='true'
-                onClick={() => {}}
-                color='inherit'
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </AppBar>
-      </div>
-    </MuiThemeProvider>
+                <MenuItem className={classes.menuItem} value=''>
+                  EN
+                </MenuItem>
+                <MenuItem className={classes.menuItem} value={20}>RU</MenuItem>
+                <MenuItem className={classes.menuItem} value={30}>SP</MenuItem>
+              </Select>
+            </FormControl>
+            <Link
+              component='button'
+              variant='body2'
+              onClick={() => { }}
+            >
+              Log In
+            </Link>
+            <IconButton
+              edge='end'
+              aria-label='account of current user'
+              aria-haspopup='true'
+              onClick={() => { }}
+              color='inherit'
+            >
+              <AccountCircle />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 };
 

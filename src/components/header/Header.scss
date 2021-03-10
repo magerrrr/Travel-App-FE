@@ -1,0 +1,32 @@
+header .MuiLink-button {
+  color: inherit;
+  font-family: inherit;
+  margin-left: 20px;
+  margin-right: 20px;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+header {
+  .MuiOutlinedInput-root,
+  .MuiOutlinedInput-root.Mui-focused {
+    border-radius: 5px;
+    & .MuiOutlinedInput-notchedOutline {
+      border-color: #fff;
+    }
+    &:hover .MuiOutlinedInput-notchedOutline {
+      border-color: #fff;
+    }
+    &:focus .MuiOutlinedInput-notchedOutline {
+      border-color: #fff;
+    }
+  }
+  .MuiSelect-select {
+    line-height: 1.2;
+    font-size: 0.875rem;
+    &:focus {
+      background-color: inherit;
+    }
+  }
+}

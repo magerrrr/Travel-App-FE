@@ -3,7 +3,8 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { fade, makeStyles, Theme } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Box from '@material-ui/core/Box';
 import image from '../../assets/img/travel_app.jpg';
 
@@ -47,6 +48,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   inputRoot: {
     color: 'inherit',
     fontFamily: 'inherit',
+    paddingLeft: 0,
+    '&:focus': {
+      border: '1px solid #91B3FA',
+      outlineColor: '#91B3FA',
+    },
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -56,8 +62,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: '#100774',
     [theme.breakpoints.up('sm')]: {
       width: '100px',
-      border: '1px solid #91B3FA',
-      borderRadius: '5px',
+
       '&:focus': {
         width: '20ch',
       },
@@ -68,7 +73,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const Intro: React.FC = () => {
   const classes = useStyles();
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='lg' className='intro'>
       <Grid
         container
         direction='row'
@@ -78,16 +83,25 @@ const Intro: React.FC = () => {
         <Box display='flex' flexDirection='column'>
           <div className={classes.introText}>Explore The World!</div>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder='Search…'
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
+            <TextField
+              type='search'
+              variant='outlined'
+              margin='normal'
+              autoComplete='off'
+              autoFocus
+              placeholder='Search...'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>
+                    <SearchIcon className={classes.searchIcon} />
+                  </InputAdornment>
+                ),
+                classes: {
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+
+                },
               }}
-              inputProps={{ 'aria-label': 'search' }}
             />
           </div>
         </Box>

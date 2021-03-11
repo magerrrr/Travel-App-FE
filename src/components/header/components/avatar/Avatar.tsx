@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#fff',
       backgroundColor: '#FF7C72',
       textTransform: 'uppercase',
-      fontfamily: 'inherit',
+      fontFamily: 'inherit',
     },
   }),
 );

@@ -38,3 +38,9 @@ header {
 .MuiListItem-root.Mui-selected:hover {
   background-color: rgba(145, 179, 250, 0.3) !important;
 }
+
+.lang-select {
+  .MuiInputBase-root {
+    width: 60px;
+  }
+}

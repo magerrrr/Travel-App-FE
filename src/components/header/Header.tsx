@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '2em',
     fontFamily: 'inherit',
     fontWeight: 600,
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
   header: {
     backgroundColor: '#91B3FA',
@@ -34,7 +37,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   grow: {
     flexGrow: 1,
-
   },
   inputRoot: {
     color: 'inherit',
@@ -50,10 +52,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   sectionDesktop: {
     display: 'flex',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    },
   },
   formControl: {
     margin: theme.spacing(1),
     justifyContent: 'center',
+
+    [theme.breakpoints.down('xs')]: {
+      flexGrow: 3,
+    }
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -68,9 +77,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '8px',
     borderColor: '#fff',
     color: '#fff',
+
     '&:focus': {
       borderColor: '#fff',
     },
+  },
+  selectInput: {
+    width: '60px',
   },
   selectIcon: {
     fill: '#fff',
@@ -90,7 +103,7 @@ const Header: React.FC = () => {
 
   const profile = {
     name: "ana",
-    photo: "",
+    photo: "https://scontent-waw1-1.cdninstagram.com/v/t51.2885-19/s150x150/17495027_448957902102354_4515916038797262848_a.jpg?tp=1&_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_ohc=ry6dJkhvx5AAX-sFyGH&oh=af8e66524c2eaf475e3466df49389e31&oe=60722762",
   }
 
   return (
@@ -102,7 +115,9 @@ const Header: React.FC = () => {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <FormControl variant='outlined' className={classes.formControl}>
+            <FormControl variant='outlined' className="lang-select" classes={{
+              root: classes.formControl,
+            }}>
               <Select
                 classes={{
                   root: classes.select,
@@ -117,14 +132,14 @@ const Header: React.FC = () => {
                 <MenuItem className={classes.menuItem} value='es'>ES</MenuItem>
               </Select>
             </FormControl>
-            <Link
+            <Link className={classes.grow}
               component='button'
               variant='body2'
               onClick={() => { }}
             >
               {t("login")}
             </Link>
-            <UserAvatar profile={ profile } />
+            <UserAvatar profile={profile} />
           </div>
         </Toolbar>
       </AppBar>

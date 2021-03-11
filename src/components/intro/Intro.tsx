@@ -24,6 +24,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.up('sm')]: {
       marginRight: 0,
     },
+    [theme.breakpoints.down('xs')]: {
+      marginRight: '1rem',
+      marginTop: '1rem',
+      marginBottom: '1rem',
+      fontSize: '2em',
+    },
   },
   introGrid: {
     [theme.breakpoints.down('md')]: {
@@ -77,6 +83,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       '&:focus': {
         width: '30ch',
       },
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '14px',
     },
   },
 }));

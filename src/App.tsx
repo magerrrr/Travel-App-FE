@@ -4,6 +4,7 @@ import i18n from "./i18n/config";
 import { I18nextProvider } from "react-i18next";
 import Header from './components/header';
 import Intro from './components/intro';
+import Footer from './components/footer';
 
 const App: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const App: React.FC = () => {
       <div className='page'>
         <Header />
         <Intro />
+        <Footer />
       </div>
     </I18nextProvider>
   );

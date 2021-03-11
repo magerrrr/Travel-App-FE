@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
@@ -9,14 +9,15 @@ import Box from '@material-ui/core/Box';
 import image from '../../assets/img/travel_app.jpg';
 
 import './Intro.scss';
-import { useStyles } from "./Intro.style.ts";
+import { useStyles } from './Intro.style';
 
 const Intro: React.FC = () => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <Container maxWidth='lg' className='intro'>
-      <Grid className={classes.introGrid}
+      <Grid
+        className={classes.introGrid}
         container
         direction='row'
         justify='center'
@@ -24,8 +25,8 @@ const Intro: React.FC = () => {
       >
         <Box className={classes.introBox} display='flex' flexDirection='column'>
           <div className={classes.introText}>
-            <div >{t("IntroductionLeft")}</div>
-            <div >{t("IntroductionRight")}</div>
+            <div>{t('IntroductionLeft')}</div>
+            <div>{t('IntroductionRight')}</div>
           </div>
           <div className={classes.search}>
             <TextField
@@ -34,7 +35,7 @@ const Intro: React.FC = () => {
               margin='normal'
               autoComplete='off'
               autoFocus
-              placeholder={t("search")}
+              placeholder={t('search')}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start'>

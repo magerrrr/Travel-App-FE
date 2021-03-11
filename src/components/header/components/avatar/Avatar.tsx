@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import { useStyles } from "./Avatar.style.ts";
+import { useStyles } from './Avatar.style';
 
 interface IUserAvatar {
   profile: {
@@ -15,9 +15,9 @@ const UserAvatar: React.FC<IUserAvatar> = ({ profile }) => {
   const profileName = name.charAt(0);
   return (
     <div className={classes.root}>
-      <Avatar className={classes.circle} alt="avatar" src={photo}>{profileName}</Avatar>
+      <Avatar className={classes.circle} alt='avatar' src={photo}>{profileName}</Avatar>
     </div>
   );
-}
+};
 
 export default UserAvatar;

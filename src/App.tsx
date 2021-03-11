@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader/root';
-import i18n from "./i18n/config";
-import { I18nextProvider } from "react-i18next";
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n/config';
 import Header from './components/header';
 import Intro from './components/intro';
 import Footer from './components/footer';

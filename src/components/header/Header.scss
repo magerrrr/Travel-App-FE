@@ -30,3 +30,11 @@ header {
     }
   }
 }
+.MuiListItem-button:hover {
+  background-color: rgba(145, 179, 250, 0.1) !important;
+}
+
+.MuiPaper-root .MuiListItem-root.Mui-selected,
+.MuiListItem-root.Mui-selected:hover {
+  background-color: rgba(145, 179, 250, 0.3) !important;
+}

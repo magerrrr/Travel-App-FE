@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Link from '@material-ui/core/Link';
 import { useTranslation } from "react-i18next";
+import UserAvatar from "./components/avatar";
 
 import './Header.scss';
 
@@ -52,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 70,
+    justifyContent: 'center',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -87,6 +88,11 @@ const Header: React.FC = () => {
     i18n.changeLanguage(newlang);
   };
 
+  const profile = {
+    name: "ana",
+    photo: "",
+  }
+
   return (
     <div className={classes.grow}>
       <AppBar className={classes.header} position='static'>
@@ -118,15 +124,7 @@ const Header: React.FC = () => {
             >
               {t("login")}
             </Link>
-            <IconButton
-              edge='end'
-              aria-label='account of current user'
-              aria-haspopup='true'
-              onClick={() => { }}
-              color='inherit'
-            >
-              <AccountCircle />
-            </IconButton>
+            <UserAvatar profile={ profile } />
           </div>
         </Toolbar>
       </AppBar>

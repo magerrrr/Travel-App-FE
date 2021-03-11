@@ -1,24 +1,6 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    circle: {
-      color: '#fff',
-      backgroundColor: '#FF7C72',
-      textTransform: 'uppercase',
-      fontFamily: 'inherit',
-    },
-  }),
-);
+import { useStyles } from "./Avatar.style.ts";
 
 interface IUserAvatar {
   profile: {

@@ -58,20 +58,24 @@ const MapComponent = (props: MapProps) => {
     fetchData();
   }, [countryCode]);
 
+  const content = isLoading ? null
+    : (
+      <Map id='mapid' center={capitalPosition} zoom={9} scrollWheelZoom={true}>
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'
+        />
+        <LayerViewControls />
+        <Marker position={capitalPosition} />
+        <ScaleControl />
+        <FullscreenControl position='topleft' />
+        <GeoJSON data={geoData} />
+      </Map>
+    );
   return (
-    <Map id='mapid' center={capitalPosition} zoom={9} scrollWheelZoom={true}>
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
-      />
-      <LayerViewControls />
-      <Marker position={capitalPosition} />
-
-      <ScaleControl />
-      <FullscreenControl position='topleft' />
-
-      <GeoJSON data={geoData} />
-    </Map>
+    <>
+      { content }
+    </>
   );
 };
 

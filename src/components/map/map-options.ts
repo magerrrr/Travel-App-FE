@@ -16,6 +16,7 @@ const mapLayouts = [
     url:
       'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png',
     attributes: '©OpenStreetMap, ©CartoDB',
+    checked: true,
   },
   {
     name: 'Voyager W/O Labels',
@@ -28,7 +29,6 @@ const mapLayouts = [
     url:
       'https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png',
     attributes: '©OpenStreetMap, ©CartoDB',
-    checked: true,
   },
   {
     name: 'Dark Matter W/O Labels',

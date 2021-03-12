@@ -1,20 +1,14 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import FullscreenControl from 'react-leaflet-fullscreen';
-//import 'react-leaflet-fullscreen/dist/styles.css';
+import 'react-leaflet-fullscreen/dist/styles.css';
 import './style.scss';
 
 import {
   Map,
   TileLayer,
-  CircleMarker,
-  Tooltip,
-  LayersControl,
-  LayerGroup,
   Marker,
-  Popup,
   ScaleControl,
-  Polygon,
   GeoJSON,
 } from 'react-leaflet';
 
@@ -63,8 +57,6 @@ const MapComponent = (props: MapProps) => {
     }
     fetchData();
   }, [countryCode]);
-
-  
 
   return (
     <Map id='mapid' center={capitalPosition} zoom={9} scrollWheelZoom={true}>

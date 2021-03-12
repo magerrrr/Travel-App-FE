@@ -5,31 +5,14 @@ import i18n from './i18n/config';
 import Header from './components/header';
 import Intro from './components/intro';
 import Footer from './components/footer';
-import CountryCard from './components/country-card/CountryCard';
-import Toolbar from '@material-ui/core/Toolbar';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import CountryCardsContainer from './components/country-cards-container';
 const App: React.FC = () => {
   return (
     <I18nextProvider i18n={i18n}>
       <div className='page'>
         <Header />
         <Intro />
-        <Toolbar>
-          <Container maxWidth='lg' className='cards'>
-            <Grid container justify="center" spacing={5}>
-              <Grid item>
-                <CountryCard />
-              </Grid>
-              <Grid item>
-                <CountryCard />
-              </Grid>
-              <Grid item>
-                <CountryCard />
-              </Grid>
-            </Grid>
-          </Container>
-        </Toolbar>
+        <CountryCardsContainer />
         <Footer />
       </div>
     </I18nextProvider>

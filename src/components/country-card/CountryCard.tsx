@@ -7,22 +7,36 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import spain from '../../assets/img/spain.jpg';
+
 
 import './CountryCard.scss';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 380,
-    borderRadius: '16px',
+    borderRadius: '26px',
+    color: '#100774',
+    '&:hover': {
+      color: '#fff',
+      backgroundColor: '#525AE9'
+    }
   },
   image: {
-    borderRadius: '16px',
-  },
+    borderRadius: '26px',
+  }
 });
 
-const CountryCard = () => {
+interface ICountryCard {
+  country: {
+    name: string
+    capital: string
+    image: string
+  }
+}
+
+const CountryCard: React.FC<ICountryCard> = ({ country }) => {
   const classes = useStyles();
+  const { name, capital, image } = country;
   return (
     <Card className={`card ${classes.root}`}>
       <CardActionArea>
@@ -30,13 +44,13 @@ const CountryCard = () => {
           component="img"
           alt="country card"
           height="380"
-          image={spain}
+          image={image}
           className={classes.image}
           title="country card"
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
-            Madrid, Spain
+            {capital},{name}
           </Typography>
         </CardContent>
       </CardActionArea>

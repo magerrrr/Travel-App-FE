@@ -20,10 +20,10 @@ const Intro: React.FC = () => {
         className={classes.introGrid}
         container
         direction='row'
-        justify='center'
+        justify='space-between'
         alignItems='center'
       >
-        <Box className={classes.introBox} display='flex' flexDirection='column'>
+        <Box display='flex' flexDirection='column'>
           <div className={classes.introText}>
             <div>{t('IntroductionLeft')}</div>
             <div>{t('IntroductionRight')}</div>

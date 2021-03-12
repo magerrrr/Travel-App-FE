@@ -1,9 +1,6 @@
 import { fade, makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme: Theme) => ({
-  introBox: {
-    minWidth: '30%',
-  },
   introText: {
     marginRight: '2rem',
     marginTop: '2rem',

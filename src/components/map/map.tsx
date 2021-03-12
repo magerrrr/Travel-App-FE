@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import FullscreenControl from 'react-leaflet-fullscreen';
-//import 'react-leaflet-fullscreen/dist/styles.css'
+//import 'react-leaflet-fullscreen/dist/styles.css';
+import './style.scss';
+
 import {
   Map,
   TileLayer,
@@ -13,8 +15,10 @@ import {
   Popup,
   ScaleControl,
   Polygon,
-  GeoJSON
+  GeoJSON,
 } from 'react-leaflet';
+
+import LayerViewControls from './layer-controls';
 
 type MapProps = {
   capitalPosition: {
@@ -22,36 +26,34 @@ type MapProps = {
     lng: number,
   },
   countryCode: string,
-  
-}
+};
 
 const MapComponent = (props: MapProps) => {
-  const { 
-    capitalPosition, 
+  const {
+    capitalPosition,
     countryCode = 'blr',
   } = props;
 
-  const [isLoading , setIsLoading] = useState(true);
-  const [geoData, setGeoData] = useState<any>({type:'Feature',properties:{cca2:''},geometry:{type:'Polygon',coordinates:[[]]}});
+  const [isLoading, setIsLoading] = useState(true);
+  const [geoData, setGeoData] = useState<any>({ type: 'Feature', properties: {cca2: '' }, geometry:{ type: 'Polygon', coordinates: [[]] } });
 
   async function fetchData() {
-    const response = await fetch(`../data/${countryCode}.geo.json`,{
+    const response = await fetch(`../data/${countryCode}.geo.json`, {
       method: 'get',
       headers: {
-          'Accept': 'application/json, text/plain, */*' ,
-          'Content-Type': 'application/json'
-        }
+        'Content-Type': 'application/json',
+      },
     });
 
     response
       .json()
-      .then(data => {
+      .then((data) => {
         if (data.features) {
           setGeoData(data.features[0]);
           setIsLoading(false);
         }
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }
 
@@ -62,21 +64,23 @@ const MapComponent = (props: MapProps) => {
     fetchData();
   }, [countryCode]);
 
+  
+
   return (
-    <Map id="mapid" center={capitalPosition} zoom={9} scrollWheelZoom={true}>
+    <Map id='mapid' center={capitalPosition} zoom={9} scrollWheelZoom={true}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
       />
-      <Marker position={capitalPosition}/>
+      <LayerViewControls />
+      <Marker position={capitalPosition} />
 
-      <ScaleControl></ScaleControl>
-      <FullscreenControl position="topleft" />
+      <ScaleControl />
+      <FullscreenControl position='topleft' />
 
-      <GeoJSON data={geoData}></GeoJSON>
-
+      <GeoJSON data={geoData} />
     </Map>
-  )
-}
+  );
+};
 
-export default MapComponent
+export default MapComponent;

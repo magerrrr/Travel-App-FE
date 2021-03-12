@@ -31,27 +31,26 @@ const MapComponent = (props: MapProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [geoData, setGeoData] = useState<any>({ type: 'Feature', properties: {cca2: '' }, geometry:{ type: 'Polygon', coordinates: [[]] } });
 
-  async function fetchData() {
-    const response = await fetch(`../data/${countryCode}.geo.json`, {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    response
-      .json()
-      .then((data) => {
-        if (data.features) {
-          setGeoData(data.features[0]);
-          setIsLoading(false);
-        }
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
-  }
-
   useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(`../data/${countryCode}.geo.json`, {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      response
+        .json()
+        .then((data) => {
+          if (data.features) {
+            setGeoData(data.features[0]);
+            setIsLoading(false);
+          }
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
+    }
     if (!isLoading) {
       setIsLoading(true);
     }

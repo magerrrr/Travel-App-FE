@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const path = require('path');
 
@@ -25,6 +26,10 @@ const config = {
             loader: 'sass-loader',
           },
         ],
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(js|jsx)$/,
@@ -69,6 +74,7 @@ const config = {
       filename: 'index.html',
       template: 'src/index.html',
     }),
+    new MiniCssExtractPlugin(),
   ],
 };
 

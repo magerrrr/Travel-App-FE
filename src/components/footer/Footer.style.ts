@@ -11,11 +11,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(8),
     padding: theme.spacing(6, 0),
   },
+  teamContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& a': {
+      margin: theme.spacing(2, 1),
+    },
+  },
   team: {
     display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
   },
   small: {
     width: theme.spacing(6),
@@ -33,14 +38,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
-  copyright: {
+  footerText: {
     color: '#fff',
     fontFamily: 'inherit',
     fontSize: 20,
     fontWeight: 600,
   },
   logo: {
+    width: '264px'
   }
 }));

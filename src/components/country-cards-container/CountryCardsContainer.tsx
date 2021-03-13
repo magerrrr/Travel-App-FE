@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import CountryCard from '../country-card';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,48 +7,26 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import './CountryCardsContainer.scss';
-import spain from '../../assets/img/spain.jpg';
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    maxWidth: 380,
-    borderRadius: '16px',
-  },
-  image: {
-    borderRadius: '16px',
-  },
-  cards: {
-    marginTop: theme.spacing(5)
-  },
-  title: {
-    fontSize: '3em',
-    fontFamily: 'inherit',
-    fontWeight: 600,
-    textAlign: 'center',
-    marginTop: theme.spacing(5)
-  }
-}));
+import { countries } from "./stubs";
+import { SearchContext } from "../../context/SearchContext";
+import { useStyles } from './CountryCardsContainer.style';
 
-type ICountryCardsContainer = {
-  searchText: string
-}
-
-const CountryCardsContainer: React.FC<ICountryCardsContainer> = ({ searchText }) => {
+const CountryCardsContainer: React.FC = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
+  const { searchText } = React.useContext(SearchContext);
   const toSearch = searchText.trim().toLowerCase();
-  const country = { name: 'Spain', capital: 'Madrid', image: spain };
-  const country2 = { name: 'Belarus', capital: 'Minsk', image: spain };
+
   const countriesFilter = ({ name, capital }: any) => {
     const countryName = name.trim().toLowerCase();
     const countryCapital = capital.trim().toLowerCase();
-    console.log(toSearch);
-    if (!toSearch || countryName.includes(toSearch) || countryCapital.includes(toSearch)) {
+    if (countryName.includes(toSearch) || countryCapital.includes(toSearch)) {
       return true;
     }
     return false;
   }
-  const countries = [country, country2].filter(countriesFilter);
-
-  const items = countries.map((row, rowIndex) => {
+  const filteredCountries = toSearch ? countries.filter(countriesFilter) : countries;
+  const items = filteredCountries.map((row, rowIndex) => {
     return (
       <Grid item key={rowIndex}>
         <CountryCard country={row} />
@@ -59,7 +38,7 @@ const CountryCardsContainer: React.FC<ICountryCardsContainer> = ({ searchText })
     <Toolbar>
       <Container maxWidth='lg' className={classes.cards}>
         <div className={classes.title}>
-          Top Countries
+          {t('Cards Heading')}
         </div>
         <Grid container justify="center" className={classes.cards} spacing={5}>
           {items}

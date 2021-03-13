@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SearchContext } from "../../context/SearchContext";
 import { useTranslation } from 'react-i18next';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -10,13 +11,11 @@ import image from '../../assets/img/travel_app.jpg';
 
 import './Intro.scss';
 import { useStyles } from './Intro.style';
-type Intr = {
-  setSearchText: any
-}
-const Intro: React.FC<Intr> = ({ setSearchText }) => {
+
+const Intro: React.FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
-
+  const { setSearchText } = React.useContext(SearchContext);
   return (
     <Container maxWidth='lg' className='intro'>
       <Grid
@@ -38,7 +37,7 @@ const Intro: React.FC<Intr> = ({ setSearchText }) => {
               margin='normal'
               autoComplete='off'
               autoFocus
-              onChange={(e) => { console.log(e.target.value); setSearchText(e.target.value);}}
+              onChange={(e) => { console.log(e.target.value); setSearchText(e.target.value); }}
               placeholder={t('search')}
               InputProps={{
                 startAdornment: (

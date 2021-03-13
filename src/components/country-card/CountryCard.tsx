@@ -15,10 +15,6 @@ const useStyles = makeStyles({
     maxWidth: 380,
     borderRadius: '26px',
     color: '#100774',
-    '&:hover': {
-      color: '#fff',
-      backgroundColor: '#525AE9'
-    }
   },
   image: {
     borderRadius: '26px',

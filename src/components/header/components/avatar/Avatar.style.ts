@@ -6,6 +6,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       '& > *': {
         margin: theme.spacing(1),
+        marginRight: 0
       },
     },
     circle: {

@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   footer: {
     backgroundColor: '#100774',
     marginTop: theme.spacing(8),
-    padding: theme.spacing(6, 0),
+    padding: theme.spacing(4, 0),
   },
   teamContent: {
     display: 'flex',

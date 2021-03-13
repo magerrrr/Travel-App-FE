@@ -27,9 +27,34 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-const CountryCardsContainer = () => {
+type ICountryCardsContainer = {
+  searchText: string
+}
+
+const CountryCardsContainer: React.FC<ICountryCardsContainer> = ({ searchText }) => {
   const classes = useStyles();
+  const toSearch = searchText.trim().toLowerCase();
   const country = { name: 'Spain', capital: 'Madrid', image: spain };
+  const country2 = { name: 'Belarus', capital: 'Minsk', image: spain };
+  const countriesFilter = ({ name, capital }: any) => {
+    const countryName = name.trim().toLowerCase();
+    const countryCapital = capital.trim().toLowerCase();
+    console.log(toSearch);
+    if (!toSearch || countryName.includes(toSearch) || countryCapital.includes(toSearch)) {
+      return true;
+    }
+    return false;
+  }
+  const countries = [country, country2].filter(countriesFilter);
+
+  const items = countries.map((row, rowIndex) => {
+    return (
+      <Grid item key={rowIndex}>
+        <CountryCard country={row} />
+      </Grid>
+    );
+  });
+
   return (
     <Toolbar>
       <Container maxWidth='lg' className={classes.cards}>
@@ -37,24 +62,7 @@ const CountryCardsContainer = () => {
           Top Countries
         </div>
         <Grid container justify="center" className={classes.cards} spacing={5}>
-          <Grid item>
-            <CountryCard country={country}/>
-          </Grid>
-          <Grid item>
-            <CountryCard country={country}/>
-          </Grid>
-          <Grid item>
-            <CountryCard country={country}/>
-          </Grid>
-          <Grid item>
-            <CountryCard country={country}/>
-          </Grid>
-          <Grid item>
-            <CountryCard country={country}/>
-          </Grid>
-          <Grid item>
-            <CountryCard country={country}/>
-          </Grid>
+          {items}
         </Grid>
       </Container>
     </Toolbar>

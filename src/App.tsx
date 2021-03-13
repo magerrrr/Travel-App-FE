@@ -7,12 +7,13 @@ import Intro from './components/intro';
 import Footer from './components/footer';
 import CountryCardsContainer from './components/country-cards-container';
 const App: React.FC = () => {
+  const [searchText, setSearchText] = React.useState('');
   return (
     <I18nextProvider i18n={i18n}>
       <div className='page'>
         <Header />
-        <Intro />
-        <CountryCardsContainer />
+        <Intro setSearchText={setSearchText}/>
+        <CountryCardsContainer searchText={searchText}/>
         <Footer />
       </div>
     </I18nextProvider>

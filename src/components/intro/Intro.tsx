@@ -10,10 +10,13 @@ import image from '../../assets/img/travel_app.jpg';
 
 import './Intro.scss';
 import { useStyles } from './Intro.style';
-
-const Intro: React.FC = () => {
+type Intr = {
+  setSearchText: any
+}
+const Intro: React.FC<Intr> = ({ setSearchText }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+
   return (
     <Container maxWidth='lg' className='intro'>
       <Grid
@@ -35,6 +38,7 @@ const Intro: React.FC = () => {
               margin='normal'
               autoComplete='off'
               autoFocus
+              onChange={(e) => { console.log(e.target.value); setSearchText(e.target.value);}}
               placeholder={t('search')}
               InputProps={{
                 startAdornment: (

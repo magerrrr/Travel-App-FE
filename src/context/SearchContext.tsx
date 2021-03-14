@@ -4,11 +4,12 @@ interface ISearchContext {
   searchText: string
   setSearchText: (value: string) => void
 }
+
 const SearchContext = React.createContext<ISearchContext>({
   searchText: '',
-  setSearchText: (value) => { }
+  setSearchText: () => { },
 });
 
 export {
-  SearchContext
-}
+  SearchContext,
+};

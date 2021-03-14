@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { SearchContext } from "../../context/SearchContext";
 import { useTranslation } from 'react-i18next';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -7,8 +6,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Box from '@material-ui/core/Box';
-import image from '../../assets/img/travel_app.jpg';
 import IconButton from '@material-ui/core/IconButton';
+import image from '../../assets/img/travel_app.jpg';
+import { SearchContext } from '../../context/SearchContext';
 import './Intro.scss';
 import { useStyles } from './Intro.style';
 

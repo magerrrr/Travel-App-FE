@@ -7,7 +7,6 @@ import Footer from './components/footer';
 import StartPage from './pages/StartPage';
 
 const App: React.FC = () => {
-  const [searchText, setSearchText] = React.useState('');
   return (
     <I18nextProvider i18n={i18n}>
       <div className='page'>

@@ -8,14 +8,26 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Box from '@material-ui/core/Box';
 import image from '../../assets/img/travel_app.jpg';
-
+import IconButton from '@material-ui/core/IconButton';
 import './Intro.scss';
 import { useStyles } from './Intro.style';
 
 const Intro: React.FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { setSearchText } = React.useContext(SearchContext);
+  const { searchText, setSearchText } = React.useContext(SearchContext);
+
+  const onSearchClick = () => {
+    setSearchText(searchText);
+  };
+
+  const onKeyUp = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (event.ctrlKey && event.key === 'Enter') {
+      const target = event.target as HTMLTextAreaElement;
+
+      setSearchText(target.value);
+    }
+  };
   return (
     <Container maxWidth='lg' className='intro'>
       <Grid
@@ -37,12 +49,15 @@ const Intro: React.FC = () => {
               margin='normal'
               autoComplete='off'
               autoFocus
-              onChange={(e) => { console.log(e.target.value); setSearchText(e.target.value); }}
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyUp={onKeyUp}
               placeholder={t('search')}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start'>
-                    <SearchIcon className={classes.searchIcon} />
+                    <IconButton className={classes.searchIcon} onClick={onSearchClick}>
+                      <SearchIcon />
+                    </IconButton>
                   </InputAdornment>
                 ),
                 classes: {

@@ -3,19 +3,25 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     maxWidth: 380,
-    borderRadius: '16px',
+    borderRadius: theme.spacing(2),
   },
   image: {
-    borderRadius: '16px',
+    borderRadius: theme.spacing(2),
   },
   cards: {
-    marginTop: theme.spacing(5)
+    marginTop: '1rem'
   },
   title: {
     fontSize: '3em',
     fontFamily: 'inherit',
     fontWeight: 600,
     textAlign: 'center',
-    marginTop: theme.spacing(5)
+    marginTop: theme.spacing(5),
+    [theme.breakpoints.down('xs')]: {
+      marginRight: '1rem',
+      marginTop: '2rem',
+      marginBottom: '1rem',
+      fontSize: '2em',
+    },
   }
 }));

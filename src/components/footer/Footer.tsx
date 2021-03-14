@@ -22,7 +22,7 @@ const Footer = () => {
             <img src={logo} alt='Rolling Scopes School Logo' height='50' className='header-logo' />
           </Link>
         </div>
-        <Typography component='p' className={classes.footerText}>
+        <Typography component='p' className={`${classes.copyright} ${classes.footerText}`}>
           @2021
         </Typography>
         <div className={classes.teamContent}>

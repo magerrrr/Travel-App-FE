@@ -15,7 +15,7 @@ const CountryCardsContainer: React.FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { searchText } = React.useContext(SearchContext);
-  const toSearch = searchText.trim().toLowerCase();
+  const toSearch = searchText ? searchText.trim().toLowerCase() : null;
 
   const countriesFilter = ({ name, capital }: any) => {
     const countryName = name.trim().toLowerCase();

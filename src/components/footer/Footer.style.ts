@@ -38,7 +38,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      '& > *': {
+        margin: theme.spacing(2, 1, 2, 1),
+      },
+    }
   },
   footerText: {
     color: '#fff',
@@ -46,7 +53,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontSize: 20,
     fontWeight: 600,
   },
+  copyright: {
+    [theme.breakpoints.down('xs')]: {
+      order: 1
+    }
+  },
   logo: {
-    width: '264px'
+    width: '264px',
+    [theme.breakpoints.down('xs')]: {
+      width: 'auto'
+    }
   }
 }));

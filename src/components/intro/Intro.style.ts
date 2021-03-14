@@ -3,8 +3,8 @@ import { fade, makeStyles, Theme } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme: Theme) => ({
   introText: {
     marginRight: '2rem',
-    marginTop: '2rem',
     marginBottom: '2rem',
+    marginTop: '3rem',
     fontSize: '3em',
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -12,9 +12,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down('xs')]: {
       marginRight: '1rem',
-      marginTop: '1rem',
       marginBottom: '1rem',
       fontSize: '2em',
+
+    },
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center'
     },
   },
   introGrid: {
@@ -38,14 +41,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: '0px 6px 0 7px',
     height: '100%',
     position: 'absolute',
-    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: '#91B3FA',
+    color: '#fff',
+    backgroundColor: '#91B3FA',
+    borderRadius: '5px',
+
   },
   inputRoot: {
     color: 'inherit',

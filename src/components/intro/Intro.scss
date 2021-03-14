@@ -5,6 +5,10 @@
   .MuiInputBase-root input {
     font-family: 'Montserrat, sans-serif';
   }
+  .MuiIconButton-root:hover {
+    background-color: #91b3fa;
+    opacity: 0.5;
+  }
 }
 
 .intro {

@@ -21,8 +21,10 @@ const Footer = () => {
           <Link href='https://rs.school/js/' target='_blank' rel='noopener noreferrer'>
             <img src={logo} alt='Rolling Scopes School Logo' height='50' className='header-logo' />
           </Link>
+          <Typography component='p' className={`${classes.copyright} ${classes.footerText}`}>
+            @2021
+          </Typography>
         </div>
-
         <div className={classes.teamContent}>
           <Typography component='p' className={classes.footerText}>
             {t('Team title')}
@@ -41,13 +43,8 @@ const Footer = () => {
               <Avatar alt='Kirill Mager' src={kira} className={classes.large} />
             </Link>
           </div>
-
         </div>
-
       </Toolbar>
-      <Typography component='p' className={`${classes.copyright} ${classes.footerText}`}>
-        @2021
-                                </Typography>
     </footer>
   );
 };

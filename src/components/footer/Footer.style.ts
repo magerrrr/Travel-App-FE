@@ -39,7 +39,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginBottom: theme.spacing(4),
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
       alignItems: 'center',
@@ -55,15 +54,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 600,
   },
   copyright: {
-    textAlign: 'center',
+    marginTop: '24px',
     fontSize: 16,
     [theme.breakpoints.down('xs')]: {
-      order: 1
+      textAlign: 'center'
     }
   },
   logo: {
     [theme.breakpoints.down('xs')]: {
-      width: 'auto'
+      width: 'auto',
+      order: 2
     }
   }
 }));

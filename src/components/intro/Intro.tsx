@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useImage } from 'react-image';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
@@ -16,6 +17,9 @@ const Intro: React.FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { searchText, setSearchText } = React.useContext(SearchContext);
+  const { src } = useImage({
+      srcList: image,
+    });
 
   const onSearchClick = () => {
     setSearchText(searchText);
@@ -24,10 +28,10 @@ const Intro: React.FC = () => {
   const onKeyUp = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     if (event.ctrlKey && event.key === 'Enter') {
       const target = event.target as HTMLTextAreaElement;
-
       setSearchText(target.value);
     }
   };
+
   return (
     <Container maxWidth='lg' className='intro'>
       <Grid
@@ -69,7 +73,7 @@ const Intro: React.FC = () => {
           </div>
         </Box>
         <div className={classes.introImg}>
-          <img src={image} alt='travel' />
+          <img src={src} alt='travel' />
         </div>
       </Grid>
     </Container>

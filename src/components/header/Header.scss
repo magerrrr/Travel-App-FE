@@ -51,3 +51,22 @@ header {
 .page .MuiTypography-h6 {
   font-family: 'Montserrat, sans-serif';
 }
+
+.overlay {
+  height: 100%;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: #91b3fa;
+  overflow-x: hidden;
+  transition: 0.5s;
+  & > * {
+    margin: calc(50vh - 60px) auto;
+  }
+  .MuiCircularProgress-root {
+    display: block;
+    color: #fff;
+  }
+}

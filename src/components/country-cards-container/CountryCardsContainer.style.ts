@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontFamily: 'inherit',
     fontWeight: 600,
     textAlign: 'center',
-    marginTop: theme.spacing(5),
+    marginTop: '3rem',
     [theme.breakpoints.down('xs')]: {
       marginRight: '1rem',
       marginTop: '2rem',

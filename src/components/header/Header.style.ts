@@ -71,4 +71,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
   selectIcon: {
     fill: '#fff',
   },
+  circle: {
+    width: 40,
+    height: 40,
+    margin: 8,
+    marginRight: 0
+  }
 }));

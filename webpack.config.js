@@ -1,13 +1,14 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 const config = {
   entry: ['react-hot-loader/patch', './src/index.tsx'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.min.js',
   },
   module: {
     rules: [
@@ -68,8 +69,14 @@ const config = {
       inject: 'body',
       filename: 'index.html',
       template: 'src/index.html',
-    }),
+    })
   ],
+  optimization: {
+
+      minimizer: [
+        new TerserPlugin({ parallel: true })
+    ]
+    }
 };
 
 module.exports = config;

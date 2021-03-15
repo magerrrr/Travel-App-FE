@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
-import image from '../../assets/img/travel_app.jpg';
+import image from '../../assets/img/travel_app-min.jpg';
 import { SearchContext } from '../../context/SearchContext';
 import './Intro.scss';
 import { useStyles } from './Intro.style';

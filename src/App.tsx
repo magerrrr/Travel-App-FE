@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button';
 import "./i18n/config";
 
 const App: React.FC = () => {
+  const capitalPosition = { lat: 26.613209, lng: 55.674835 }
+  const countryCode = 'blr';
   return (
     <I18nextProvider i18n={i18n}>
       <div>

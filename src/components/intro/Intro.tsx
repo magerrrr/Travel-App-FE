@@ -18,8 +18,8 @@ const Intro: React.FC = () => {
   const { t } = useTranslation();
   const { searchText, setSearchText } = React.useContext(SearchContext);
   const { src } = useImage({
-      srcList: image,
-    });
+    srcList: image,
+  });
 
   const onSearchClick = () => {
     setSearchText(searchText);

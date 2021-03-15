@@ -44,7 +44,7 @@ const Header: React.FC = () => {
     photo: 'https://scontent-waw1-1.cdninstagram.com/v/t51.2885-19/s150x150/17495027_448957902102354_4515916038797262848_a.jpg?tp=1&_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_ohc=ry6dJkhvx5AAX-sFyGH&oh=af8e66524c2eaf475e3466df49389e31&oe=60722762',
   };
 
-  const avatar = auth ? <UserAvatar profile={profile} /> : <AccountCircle className={classes.circle}/>;
+  const avatar = auth ? <UserAvatar profile={profile} /> : <AccountCircle className={classes.circle} />;
 
   return (
     <div className={classes.grow}>

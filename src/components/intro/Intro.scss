@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap');
+
+$secondary-color: #91b3fa;
+
 .page {
   .MuiInputBase-root,
   .MuiInputBase-input,
-  .MuiInputBase-root input {
-    font-family: 'Montserrat, sans-serif';
-  }
   .MuiIconButton-root:hover {
-    background-color: #91b3fa;
+    background-color: $secondary-color;
     opacity: 0.5;
   }
 }
@@ -16,13 +16,13 @@
   .MuiOutlinedInput-root.Mui-focused {
     border-radius: 5px;
     & .MuiOutlinedInput-notchedOutline {
-      border-color: #91b3fa;
+      border-color: $secondary-color;
     }
     &:hover .MuiOutlinedInput-notchedOutline {
-      border-color: #91b3fa;
+      border-color: $secondary-color;
     }
     &:focus .MuiOutlinedInput-notchedOutline {
-      border-color: #91b3fa;
+      border-color: $secondary-color;
     }
   }
 .MuiFormControl-root {

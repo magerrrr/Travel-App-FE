@@ -1,14 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme: Theme) => ({
-  '@global': {
-    body: {
-      margin: '0 auto',
-      fontFamily: 'Montserrat, sans-serif',
-      fontWeight: 600,
-      color: '#100774',
-    },
-  },
   title: {
     fontSize: '2em',
     fontFamily: 'inherit',
@@ -45,7 +37,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   formControl: {
     margin: theme.spacing(1),
     justifyContent: 'center',
-
     [theme.breakpoints.down('xs')]: {
       flexGrow: 3,
     }

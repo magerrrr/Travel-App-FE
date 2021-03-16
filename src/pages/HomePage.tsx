@@ -1,14 +1,18 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
+import { Suspense } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { SearchContext } from '../context/SearchContext';
+import Intro from '../components/intro';
+import CountryCardsContainer from '../components/country-cards-container';
 
 export const HomePage: React.FC = () => {
+  const [searchText, setSearchText] = React.useState('');
   return (
-    <>
-      <h1>Home page</h1>
-      <div>
-        <h1>Hello, Our team will create best travel application ever!</h1>
-        <Button variant="contained">material UI button</Button>
-      </div>
-    </>
+    <SearchContext.Provider value={{ searchText, setSearchText }}>
+      <Suspense fallback={<div className='overlay'><CircularProgress size={120} /></div>}>
+        <Intro />
+        <CountryCardsContainer />
+      </Suspense>
+    </SearchContext.Provider>
   );
 };

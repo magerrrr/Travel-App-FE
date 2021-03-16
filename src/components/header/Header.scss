@@ -1,15 +1,18 @@
+$loader-bg-color: #91b3fa;
+$border-color: #fff;
+
 header {
   .MuiOutlinedInput-root,
   .MuiOutlinedInput-root.Mui-focused {
     border-radius: 5px;
     & .MuiOutlinedInput-notchedOutline {
-      border-color: #fff;
+      border-color: $border-color;
     }
     &:hover .MuiOutlinedInput-notchedOutline {
-      border-color: #fff;
+      border-color: $border-color;
     }
     &:focus .MuiOutlinedInput-notchedOutline {
-      border-color: #fff;
+      border-color: $border-color;
     }
   }
   .MuiSelect-select {
@@ -21,7 +24,6 @@ header {
   }
   .MuiLink-button {
     color: inherit;
-    font-family: inherit;
     margin-left: 20px;
     margin-right: 8px;
     &:hover {
@@ -41,15 +43,13 @@ header {
 .MuiListItem-root.Mui-selected:hover {
   background-color: rgba(145, 179, 250, 0.3) !important;
 }
+
 .MuiMenuItem-root {
   color: #100774 !important;
-  font-family: inherit !important;
 }
+
 .lang-select .MuiInputBase-root {
   width: 60px;
-}
-.page .MuiTypography-h6 {
-  font-family: 'Montserrat, sans-serif';
 }
 
 .overlay {
@@ -59,7 +59,7 @@ header {
   z-index: 1;
   left: 0;
   top: 0;
-  background-color: #91b3fa;
+  background-color: $loader-bg-color;
   overflow-x: hidden;
   transition: 0.5s;
   & > * {
@@ -67,6 +67,6 @@ header {
   }
   .MuiCircularProgress-root {
     display: block;
-    color: #fff;
+    color: $border-color;
   }
 }

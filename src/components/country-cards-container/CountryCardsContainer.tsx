@@ -4,7 +4,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import CountryCard from '../country-card';
-import './CountryCardsContainer.scss';
 import { countries } from './stubs';
 import { SearchContext } from '../../context/SearchContext';
 import { useStyles } from './CountryCardsContainer.style';

@@ -1,0 +1,10 @@
+$font-stack: Montserrat,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+$primary-color: #100774;
+$secondary-color: #91b3fa;
+
+    body {
+      margin: 0 auto;
+      font-family: $font-stack;
+      font-weight: 600;
+      color: $primary-color;
+  }

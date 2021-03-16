@@ -52,9 +52,7 @@ const CountryCard: React.FC<ICountryCard> = ({ country }) => {
         />
         <CardContent>
           <Typography gutterBottom variant='h6' component='h2'>
-            {t(capital)}
-            ,
-            {t(name)}
+            {t(capital)},&nbsp;{t(name)}
           </Typography>
         </CardContent>
       </CardActionArea>

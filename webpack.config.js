@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const path = require('path');
 
@@ -25,6 +27,10 @@ const config = {
             loader: 'sass-loader',
           },
         ],
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(js|jsx)$/,
@@ -68,6 +74,12 @@ const config = {
       inject: 'body',
       filename: 'index.html',
       template: 'src/index.html',
+    }),
+    new MiniCssExtractPlugin(),
+    new CopyPlugin({
+      patterns: [
+        { from: './src/data', to: './data' },
+      ],
     }),
   ],
 };

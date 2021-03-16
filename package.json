@@ -3,14 +3,7 @@
   "version": "1.0.0",
   "description": "Application for virtual travel around the world.",
   "main": "index.js",
-  "keywords": [
-    "travel",
-    "world",
-    "virtual tour",
-    "rss",
-    "travel-app",
-    "rolling-scopes-school"
-  ],
+  "keywords": ["travel", "world", "virtual tour", "rss", "travel-app", "rolling-scopes-school"],
   "author": "Mager Kirill",
   "license": "ISC",
   "scripts": {
@@ -26,15 +19,17 @@
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "fontsource-roboto": "^4.0.0",
+    "i18next": "^19.9.2",
+    "i18next-browser-languagedetector": "^6.0.1",
     "leaflet": "^1.7.1",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.13.0",
-    "react-leaflet": "^2.8.0",
-    "react-leaflet-fullscreen": "^1.0.1",
-    "i18next": "^19.9.2",
     "react-i18next": "^11.8.9",
-    "i18next-browser-languagedetector": "^6.0.1"
+    "react-leaflet": "^2.8.0",
+    "react-leaflet-fullscreen": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",

@@ -3,10 +3,9 @@ import * as moment from 'moment-timezone';
 import 'moment/locale/es';
 import 'moment/locale/ru';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { I18nContext } from 'react-i18next';
 
-moment.locale('fr');
-
-const { useState, useEffect } = React;
+const { useState, useEffect, useContext } = React;
 
 type CapitalTimeProps = {
   capitalName: string,
@@ -22,10 +21,12 @@ type DateTimeObj = {
 const CapitalTime = (props: CapitalTimeProps) => {
   const { capitalName, region } = props;
   const [dateTimeObj, setDateTime] = useState<DateTimeObj>();
+  const i18nContext = useContext(I18nContext);
+  const lang = i18nContext.i18n.language;
 
   useEffect(() => {
     const updateDateTime = () => {
-      moment().locale('de');
+      moment.locale(i18nContext.i18n.language);
       const dateTime = moment().tz(`${region}/${capitalName}`);
       const obj: DateTimeObj = {
         value: moment().valueOf(),
@@ -38,19 +39,15 @@ const CapitalTime = (props: CapitalTimeProps) => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [capitalName, region, dateTimeObj]);
+  }, [capitalName, region, dateTimeObj, lang]);
 
   return (
-    <>
-      {
-        dateTimeObj ? (
-          <div>
-            <span>{dateTimeObj.date}</span>
-            <span>{dateTimeObj.time}</span>
-          </div>
-        ) : <CircularProgress size={120} />
-      }
-    </>
+    dateTimeObj ? (
+      <div>
+        <span>{dateTimeObj.date}</span>
+        <span>{dateTimeObj.time}</span>
+      </div>
+    ) : <CircularProgress size={120} />
   );
 };
 

@@ -5,7 +5,7 @@ interface ICountryApiService {
 export default class CountryApiService implements ICountryApiService {
   private baseUrl = 'https://restcountries.eu/rest/v2/name';
 
-  private returnedFields = 'fields=name;flag;alpha3Code;latlng;capital;timezones;currencies';
+  private returnedFields = 'fields=name;flag;alpha3Code;latlng;capital;timezones;currencies;region';
 
   private getResource = async (countryName: string) => {
     const url = `${this.baseUrl}/${countryName}?${this.returnedFields}`;

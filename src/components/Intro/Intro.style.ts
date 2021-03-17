@@ -39,6 +39,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     marginLeft: 0,
     width: '100%',
+    [theme.breakpoints.down('md')]: {
+      display: 'flex',
+      justifyContent: 'center',
+    }
   },
   searchIcon: {
     padding: '0px 6px 0 7px',
@@ -50,7 +54,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: '#fff',
     backgroundColor: '#91B3FA',
     borderRadius: '5px',
-
   },
   inputRoot: {
     color: 'inherit',
@@ -65,13 +68,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
-    width: '100%',
+    width: '120px',
     color: '#100774',
-    [theme.breakpoints.up('sm')]: {
-      width: '150px',
-      '&:focus': {
-        width: '30ch',
-      },
+    '&:focus': {
+      width: '20ch',
     },
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',

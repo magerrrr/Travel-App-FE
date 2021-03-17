@@ -1,8 +1,6 @@
 $secondary-color: #91b3fa;
 
-.page {
-  .MuiInputBase-root,
-  .MuiInputBase-input,
+#app {
   .MuiIconButton-root:hover {
     background-color: $secondary-color;
     opacity: 0.5;
@@ -22,8 +20,5 @@ $secondary-color: #91b3fa;
     &:focus .MuiOutlinedInput-notchedOutline {
       border-color: $secondary-color;
     }
-  }
-.MuiFormControl-root {
-  width: 100%;
   }
 }

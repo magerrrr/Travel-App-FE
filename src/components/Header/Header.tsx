@@ -11,13 +11,19 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Link from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import UserAvatar from './components/Avatar';
 
 import { useStyles } from './Header.style';
 import './Header.scss';
 
+const MyTypography = styled(Typography)`
+  cursor: pointer;
+`;
+
 const Header: React.FC = () => {
+  const history = useHistory();
   const classes = useStyles();
   const { t, i18n } = useTranslation();
   const [lang, setLang] = React.useState(i18n.languages[0].split('-')[0]);
@@ -45,21 +51,28 @@ const Header: React.FC = () => {
     photo: '',
   };
 
-  const avatar = auth ? <UserAvatar profile={profile} />
-    : <AccountCircle className={classes.circle} />;
+  const avatar = auth ? (
+    <UserAvatar profile={profile} />
+  ) : (
+    <AccountCircle className={classes.circle} />
+  );
+
+  const handleClick = () => {
+    history.push('/');
+  };
 
   return (
     <div className={classes.grow}>
-      <AppBar className={classes.header} position='static'>
+      <AppBar className={classes.header} position="static">
         <Toolbar>
-          <Typography className={classes.title} variant='h1' noWrap>
+          <MyTypography className={classes.title} variant="h1" noWrap onClick={handleClick}>
             Travel App
-          </Typography>
+          </MyTypography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <FormControl
-              variant='outlined'
-              className='lang-select'
+              variant="outlined"
+              className="lang-select"
               classes={{
                 root: classes.formControl,
               }}
@@ -73,32 +86,33 @@ const Header: React.FC = () => {
                 value={lang}
                 onChange={handleChangeLang}
               >
-                <MenuItem className={classes.menuItem} value='en'>EN</MenuItem>
-                <MenuItem className={classes.menuItem} value='ru'>RU</MenuItem>
-                <MenuItem className={classes.menuItem} value='es'>ES</MenuItem>
+                <MenuItem className={classes.menuItem} value="en">
+                  EN
+                </MenuItem>
+                <MenuItem className={classes.menuItem} value="ru">
+                  RU
+                </MenuItem>
+                <MenuItem className={classes.menuItem} value="es">
+                  ES
+                </MenuItem>
               </Select>
             </FormControl>
-            <Link
-              className={classes.grow}
-              component='button'
-              variant='body2'
-              onClick={() => { }}
-            >
+            <Link className={classes.grow} component="button" variant="body2" onClick={() => {}}>
               {t('login')}
             </Link>
             <div>
               <IconButton
-                aria-label='account of current user'
-                aria-controls='menu-appbar'
-                aria-haspopup='true'
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
                 onClick={handleMenu}
-                color='inherit'
+                color="inherit"
               >
                 {avatar}
                 <ArrowDropDownIcon />
               </IconButton>
               <Menu
-                id='menu-appbar'
+                id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: 'top',

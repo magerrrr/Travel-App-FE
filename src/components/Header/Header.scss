@@ -1,0 +1,72 @@
+$loader-bg-color: #91b3fa;
+$border-color: #fff;
+
+header {
+  .MuiOutlinedInput-root,
+  .MuiOutlinedInput-root.Mui-focused {
+    border-radius: 5px;
+    & .MuiOutlinedInput-notchedOutline {
+      border-color: $border-color;
+    }
+    &:hover .MuiOutlinedInput-notchedOutline {
+      border-color: $border-color;
+    }
+    &:focus .MuiOutlinedInput-notchedOutline {
+      border-color: $border-color;
+    }
+  }
+  .MuiSelect-select {
+    line-height: 1.2;
+    font-size: 0.875rem;
+    &:focus {
+      background-color: inherit;
+    }
+  }
+  .MuiLink-button {
+    color: inherit;
+    margin-left: 20px;
+    margin-right: 8px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .MuiIconButton-root:hover {
+    background-color: transparent;
+  }
+}
+
+.MuiListItem-button:hover {
+  background-color: rgba(145, 179, 250, 0.1) !important;
+}
+
+.MuiPaper-root .MuiListItem-root.Mui-selected,
+.MuiListItem-root.Mui-selected:hover {
+  background-color: rgba(145, 179, 250, 0.3) !important;
+}
+
+.MuiMenuItem-root {
+  color: #100774 !important;
+}
+
+.lang-select .MuiInputBase-root {
+  width: 60px;
+}
+
+.overlay {
+  height: 100%;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: $loader-bg-color;
+  overflow-x: hidden;
+  transition: 0.5s;
+  & > * {
+    margin: calc(50vh - 60px) auto;
+  }
+  .MuiCircularProgress-root {
+    display: block;
+    color: $border-color;
+  }
+}

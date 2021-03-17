@@ -28,7 +28,9 @@
     "react-i18next": "^11.8.9",
     "react-leaflet": "^2.8.0",
     "react-leaflet-fullscreen": "^1.0.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-fullpage-custom-loader": "^0.1.5",
+    "react-image": "^4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",

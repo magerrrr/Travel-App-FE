@@ -1,13 +1,14 @@
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import * as React from 'react';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box, CircularProgress } from '@material-ui/core';
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
 
 import { Polaroid, CountryLogo, Container, CountryName } from './CountryPageStyles';
+import MapComponent from '../components/map';
 
 type TParams = { id: string };
-type CurrentCountryDataTypes = {
+type CurrentCountryTypes = {
   id: number;
   name: string;
   capital: string;
@@ -15,11 +16,21 @@ type CurrentCountryDataTypes = {
   preview?: string;
 };
 
+type CurrentCountryDataTypes = {
+  name: string,
+  flag: string,
+  alpha3Code: string,
+  latlng: number[],
+  capital: string,
+  currencies: Object[],
+  region: string,
+}
+
 export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   const { id } = match.params;
   const history = useHistory();
   const api = new CountryApiService();
-  const currentCountry: CurrentCountryDataTypes | undefined = countries.find(
+  const currentCountry: CurrentCountryTypes | undefined = countries.find(
     (country) => country.id === +id,
   );
 
@@ -37,6 +48,16 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
 
     getData();
   }, []);
+
+  const mapComponent = currentCountryData ? (
+    <MapComponent
+      capitalPosition={{
+        lat: currentCountryData.latlng[0],
+        lng: currentCountryData.latlng[1],
+      }}
+      countryCode={currentCountryData.alpha3Code}
+    />
+  ) : <CircularProgress size={120} />;
 
   return currentCountryData && currentCountry ? (
     <>
@@ -57,8 +78,11 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
           Go back
         </Button>
       </Box>
+      <Box textAlign="center">
+        {mapComponent}
+      </Box>
     </>
   ) : (
-    <h1>loading...</h1>
+    <CircularProgress size={120} />
   );
 };

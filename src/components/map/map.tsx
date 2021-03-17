@@ -34,7 +34,7 @@ const MapComponent = (props: MapProps) => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`../data/${countryCode}.geo.json`, {
+      const response = await fetch(`../data/${countryCode.toLocaleLowerCase()}.geo.json`, {
         method: 'get',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const MapComponent = (props: MapProps) => {
 
   const content = isLoading ? <CircularProgress size={120} />
     : (
-      <Map id='mapid' center={capitalPosition} zoom={15} scrollWheelZoom={true}>
+      <Map id='mapid' center={capitalPosition} zoom={5} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'

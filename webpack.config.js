@@ -11,6 +11,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -69,6 +70,7 @@ const config = {
   devServer: {
     contentBase: './dist',
     port: 3000,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({

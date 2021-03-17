@@ -8,8 +8,8 @@ import i18n from 'i18next';
 import { HomePage } from './pages/HomePage';
 import { CountryPage } from './pages/CountryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
-import Header from './components/header';
-import Footer from './components/footer';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 import './App.scss';
 
@@ -33,8 +33,8 @@ const App: React.FC = () => {
         <MuiThemeProvider theme={theme}>
           <Header />
           <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/country/:id' component={CountryPage} />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/country/:id" component={CountryPage} />
             <Route component={NotFoundPage} />
           </Switch>
           <Footer />

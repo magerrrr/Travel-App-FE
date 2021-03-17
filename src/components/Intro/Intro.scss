@@ -1,0 +1,24 @@
+$secondary-color: #91b3fa;
+
+#app {
+  .MuiIconButton-root:hover {
+    background-color: $secondary-color;
+    opacity: 0.5;
+  }
+}
+
+.intro {
+  .MuiOutlinedInput-root,
+  .MuiOutlinedInput-root.Mui-focused {
+    border-radius: 5px;
+    & .MuiOutlinedInput-notchedOutline {
+      border-color: $secondary-color;
+    }
+    &:hover .MuiOutlinedInput-notchedOutline {
+      border-color: $secondary-color;
+    }
+    &:focus .MuiOutlinedInput-notchedOutline {
+      border-color: $secondary-color;
+    }
+  }
+}

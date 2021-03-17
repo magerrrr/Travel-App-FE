@@ -1,0 +1,15 @@
+.card {
+  color: #100774;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .MuiCardActionArea-root:hover .MuiCardActionArea-focusHighlight {
+    background-color: #100774;
+  }
+}
+
+.card.MuiPaper-elevation1 {
+  box-shadow: 0px 3px 1px -1px rgba(145, 179, 250, 20%), 0px 2px 2px 0px rgba(145, 179, 250, 14%),
+    0px 2px 4px 0px rgba(145, 179, 250, 12%);
+}

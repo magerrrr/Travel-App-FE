@@ -27,8 +27,8 @@ const CountryCardsContainer: React.FC = () => {
   const items = filteredCountries.map((row, rowIndex) => {
     const id = rowIndex + 1;
     return (
-      <Grid item>
-        <CountryCard country={row} key={`country-${id}`} id={id} />
+      <Grid item key={`country-${id}`}>
+        <CountryCard country={row} id={id} />
       </Grid>
     );
   });

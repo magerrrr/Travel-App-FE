@@ -10,6 +10,7 @@ const Polaroid = styled.div`
 
 const CountryLogo = styled.img`
   max-width: 100%;
+  width: 100%;
   min-height: auto;
   border-radius: 20px;
 `;

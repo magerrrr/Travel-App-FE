@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useImage } from 'react-image';
 import { makeStyles, Theme } from '@material-ui/core/styles';
@@ -24,15 +25,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface ICountryCard {
+type CountryCardType = {
+  id: number,
   country: {
-    name: string
-    capital: string
-    image: string
+    name: string,
+    capital: string,
+    image: string,
   }
-}
+};
 
-const CountryCard: React.FC<ICountryCard> = ({ country }) => {
+const CountryCard: React.FC<CountryCardType> = ({ id, country }: CountryCardType) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { name, capital, image } = country;
@@ -41,23 +43,25 @@ const CountryCard: React.FC<ICountryCard> = ({ country }) => {
   });
   return (
     <Card className={`card ${classes.root}`}>
-      <CardActionArea>
-        <CardMedia
-          component='img'
-          alt='country card'
-          height='256'
-          image={src}
-          className={classes.image}
-          title='country card'
-        />
-        <CardContent>
-          <Typography gutterBottom variant='h6' component='h2'>
-            {t(capital)}
-            ,&nbsp;
-            {t(name)}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <Link to={`/country/${id}`}>
+        <CardActionArea>
+          <CardMedia
+            component='img'
+            alt='country card'
+            height='256'
+            image={src}
+            className={classes.image}
+            title='country card'
+          />
+          <CardContent>
+            <Typography gutterBottom variant='h6' component='h2'>
+              {t(capital)}
+              ,&nbsp;
+              {t(name)}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
     </Card>
   );
 };

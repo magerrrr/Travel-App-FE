@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import CountryCard from '../country-card';
+import CountryCard from '../CountryCard';
 import { countries } from './stubs';
 import { SearchContext } from '../../context/SearchContext';
 import { useStyles } from './CountryCardsContainer.style';
@@ -22,11 +22,13 @@ const CountryCardsContainer: React.FC = () => {
     }
     return false;
   };
+
   const filteredCountries = toSearch ? countries.filter(countriesFilter) : countries;
   const items = filteredCountries.map((row, rowIndex) => {
+    const id = rowIndex + 1;
     return (
-      <Grid item key={rowIndex}>
-        <CountryCard country={row} />
+      <Grid item>
+        <CountryCard country={row} key={`country-${id}`} id={id} />
       </Grid>
     );
   });

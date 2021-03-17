@@ -1,5 +1,9 @@
 .card {
   color: #100774;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 .card .MuiCardActionArea-root:hover .MuiCardActionArea-focusHighlight {

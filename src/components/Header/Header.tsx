@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,8 +11,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Link from '@material-ui/core/Link';
-import { useTranslation } from 'react-i18next';
-import UserAvatar from './components/avatar';
+import Button from '@material-ui/core/Button';
+import UserAvatar from './components/Avatar';
 
 import { useStyles } from './Header.style';
 import './Header.scss';
@@ -45,7 +46,7 @@ const Header: React.FC = () => {
   };
 
   const avatar = auth ? <UserAvatar profile={profile} />
-                      : <AccountCircle className={classes.circle} />;
+    : <AccountCircle className={classes.circle} />;
 
   return (
     <div className={classes.grow}>

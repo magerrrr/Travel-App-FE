@@ -4,12 +4,12 @@ import { useStyles } from './Avatar.style';
 
 interface IUserAvatar {
   profile: {
-    name: string
-    photo?: string
+    name: string,
+    photo?: string,
   }
 }
 
-const UserAvatar: React.FC<IUserAvatar> = ({ profile }) => {
+const UserAvatar: React.FC<IUserAvatar> = ({ profile }: IUserAvatar) => {
   const { name, photo } = profile;
   const classes = useStyles();
   const profileName = name.charAt(0);

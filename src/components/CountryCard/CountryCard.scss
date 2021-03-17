@@ -4,10 +4,9 @@
     text-decoration: none;
     color: inherit;
   }
-}
-
-.card .MuiCardActionArea-root:hover .MuiCardActionArea-focusHighlight {
-  background-color: #100774;
+  .MuiCardActionArea-root:hover .MuiCardActionArea-focusHighlight {
+    background-color: #100774;
+  }
 }
 
 .card.MuiPaper-elevation1 {

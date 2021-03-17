@@ -16,7 +16,7 @@ import './App.scss';
 const theme = createMuiTheme({
   typography: {
     fontFamily: [
-      'Montserrat',
+      '"Montserrat,sans-serif"',
       '-apple-system',
       'Roboto',
       '"Helvetica Neue"',

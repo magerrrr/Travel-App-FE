@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import FullscreenControl from 'react-leaflet-fullscreen';
 import 'react-leaflet-fullscreen/dist/styles.css';
 import './style.scss';
@@ -57,9 +58,9 @@ const MapComponent = (props: MapProps) => {
     fetchData();
   }, [countryCode]);
 
-  const content = isLoading ? null
+  const content = isLoading ? <CircularProgress size={120} />
     : (
-      <Map id='mapid' center={capitalPosition} zoom={9} scrollWheelZoom={true}>
+      <Map id='mapid' center={capitalPosition} zoom={15} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'

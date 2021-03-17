@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "Application for virtual travel around the world.",
   "main": "index.js",
-  "keywords": ["travel", "world", "virtual tour", "rss", "travel-app", "rolling-scopes-school"],
+  "keywords": [
+    "travel",
+    "world",
+    "virtual tour",
+    "rss",
+    "travel-app",
+    "rolling-scopes-school"
+  ],
   "author": "Mager Kirill",
   "license": "ISC",
   "scripts": {

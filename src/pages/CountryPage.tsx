@@ -1,27 +1,38 @@
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import * as React from 'react';
-import { Button, Box, Toolbar, Container } from '@material-ui/core';
+import { Button, Box, Toolbar, Container, CircularProgress } from '@material-ui/core';
 import CountryImageGallery from "../components/ImageGallery";
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
 
 import { Polaroid, CountryLogo, Container as CountryContainer, CountryName } from './CountryPageStyles';
+import MapComponent from '../components/map';
 
 type TParams = { id: string };
-type CurrentCountryDataTypes = {
+type CurrentCountryTypes = {
   id: number;
   name: string;
   capital: string;
   image: string;
   preview?: string;
-  latlng?: number[];
+  latlng: number[];
 };
+
+type CurrentCountryDataTypes = {
+  name: string,
+  flag: string,
+  alpha3Code: string,
+  latlng: number[],
+  capital: string,
+  currencies: Object[],
+  region: string,
+}
 
 export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   const { id } = match.params;
   const history = useHistory();
   const api = new CountryApiService();
-  const currentCountry: CurrentCountryDataTypes | undefined = countries.find(
+  const currentCountry: CurrentCountryTypes | undefined = countries.find(
     (country) => country.id === +id,
   );
 
@@ -39,6 +50,16 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
 
     getData();
   }, []);
+
+  const mapComponent = currentCountryData ? (
+    <MapComponent
+      capitalPosition={{
+        lat: currentCountryData.latlng[0],
+        lng: currentCountryData.latlng[1],
+      }}
+      countryCode={currentCountryData.alpha3Code}
+    />
+  ) : <CircularProgress size={120} />;
 
   return currentCountryData && currentCountry ? (
     <>
@@ -59,6 +80,9 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
           Go back
         </Button>
       </Box>
+      <Box textAlign="center">
+        {mapComponent}
+      </Box>
       <Box mt={4} mb={4}>
         <Toolbar>
           <Container maxWidth='md'>
@@ -68,6 +92,6 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       </Box>
     </>
   ) : (
-    <h1>loading...</h1>
+    <CircularProgress size={120} />
   );
 };

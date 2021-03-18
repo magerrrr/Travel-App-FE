@@ -1,10 +1,11 @@
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import * as React from 'react';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box, Toolbar, Container } from '@material-ui/core';
+import CountryImageGallery from "../components/ImageGallery";
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
 
-import { Polaroid, CountryLogo, Container, CountryName } from './CountryPageStyles';
+import { Polaroid, CountryLogo, Container as CountryContainer, CountryName } from './CountryPageStyles';
 
 type TParams = { id: string };
 type CurrentCountryDataTypes = {
@@ -13,6 +14,7 @@ type CurrentCountryDataTypes = {
   capital: string;
   image: string;
   preview?: string;
+  latlng?: number[];
 };
 
 export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
@@ -42,9 +44,9 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
     <>
       <Polaroid>
         <CountryLogo src={currentCountry?.preview} alt={currentCountry.name} />
-        <Container>
+        <CountryContainer>
           <CountryName>{currentCountry.name}</CountryName>
-        </Container>
+        </CountryContainer>
       </Polaroid>
       <Box textAlign="center">
         <Button
@@ -56,6 +58,13 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
         >
           Go back
         </Button>
+      </Box>
+      <Box mt={4} mb={4}>
+        <Toolbar>
+          <Container maxWidth='md'>
+            <CountryImageGallery latlng={currentCountryData.latlng} />
+          </Container>
+        </Toolbar>
       </Box>
     </>
   ) : (

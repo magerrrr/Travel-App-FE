@@ -8,4 +8,5 @@ declare module '*.png' {
   export default content;
 }
 
-declare module 'react-leaflet-fullscreen'
+declare module 'react-leaflet-fullscreen';
+declare module 'react-image-gallery';

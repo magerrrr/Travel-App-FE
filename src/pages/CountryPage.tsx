@@ -15,7 +15,6 @@ type CurrentCountryTypes = {
   capital: string;
   image: string;
   preview?: string;
-  latlng: number[];
 };
 
 type CurrentCountryDataTypes = {

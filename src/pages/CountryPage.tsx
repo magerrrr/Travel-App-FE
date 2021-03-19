@@ -4,6 +4,8 @@ import {
   Button, Box, Toolbar, Container, CircularProgress, Grid,
 } from '@material-ui/core';
 import CountryImageGallery from '../components/ImageGallery';
+import Video from '../components/Video';
+import Weather from '../components/Weather';
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
 
@@ -25,6 +27,7 @@ type CurrentCountryTypes = {
   capital: string;
   image: string;
   preview?: string;
+  embedId: string;
 };
 
 type CurrentCountryDataTypes = {
@@ -111,6 +114,20 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
           <Container maxWidth='md'>
             <Box mt={4} mb={4}>
               <CountryImageGallery name={currentCountry.capital} />
+            </Box>
+          </Container>
+        </Toolbar>
+        <Toolbar>
+          <Container maxWidth='md'>
+            <Box mt={4} mb={4}>
+              <Video embedId={currentCountry.embedId} />
+            </Box>
+          </Container>
+        </Toolbar>
+        <Toolbar>
+          <Container maxWidth='md'>
+            <Box mt={4} mb={4}>
+              <Weather startQuery={currentCountry.capital} />
             </Box>
           </Container>
         </Toolbar>

@@ -14,6 +14,7 @@ const country1 = {
   capital: 'Madrid',
   image: spain,
   preview: 'https://ratatum.com/wp-content/uploads/2018/03/1i.jpg',
+  embedId: "L5JORXmV_A0",
 };
 const country2 = {
   id: 2,
@@ -22,6 +23,7 @@ const country2 = {
   image: minsk,
   preview:
     'https://d39raawggeifpx.cloudfront.net/styles/16_9_desktop/s3/articleimages/bneGeneric_Belarus_minsk_cityscape_Cropped.jpg',
+  embedId: "vE9S-6DNM5k",
 };
 const country8 = {
   id: 8,
@@ -29,6 +31,7 @@ const country8 = {
   capital: 'Paris',
   image: paris,
   preview: 'https://opentheoryproject.files.wordpress.com/2014/04/paris.jpg',
+  embedId: "zTjnQ0XlAc4",
 };
 const country4 = {
   id: 4,
@@ -37,6 +40,7 @@ const country4 = {
   image: russia,
   preview:
     'https://brand-mag.com/wp-content/uploads/Reyting-gorodov-Rossii-po-urovnyu-zhizni-2017-..jpg',
+  embedId: "YrNxPr4PKQo",
 };
 const country9 = {
   id: 9,
@@ -45,6 +49,7 @@ const country9 = {
   image: italy,
   preview:
     'https://www.roadaffair.com/wp-content/uploads/2017/09/colosseum-rome-italy-shutterstock_433413835.jpg',
+  embedId: "FlRwssZYRM0",
 };
 const country6 = {
   id: 6,
@@ -52,6 +57,7 @@ const country6 = {
   capital: 'Berlin',
   image: germany,
   preview: 'https://www.kurortbest.ru/assets/images/4/germaniyu.jpg',
+  embedId: "IPbzWJNmndY",
 };
 const country7 = {
   id: 7,
@@ -60,6 +66,7 @@ const country7 = {
   image: sweden,
   preview:
     'https://avatars.mds.yandex.net/get-zen_doc/53963/pub_5e74876ef2eeaa232df9a9aa_5e748c9a45ca804afa832ad2/scale_1200',
+  embedId: "6zEIvZqs0-Y",
 };
 const country5 = {
   id: 5,
@@ -67,6 +74,7 @@ const country5 = {
   capital: 'Kiev',
   image: ukraine,
   preview: 'https://next.odnaminyta.com/app/uploads/2020/08/image-66.jpg',
+  embedId: "ISGJfXPcRAg",
 };
 const country3 = {
   id: 3,
@@ -74,6 +82,7 @@ const country3 = {
   capital: 'Warsaw',
   image: poland,
   preview: 'https://all.accor.com/magazine/imagerie/poland_warsaw3-89bf.jpg',
+  embedId: "6KjOfVTX10Q",
 };
 
 const countries = [

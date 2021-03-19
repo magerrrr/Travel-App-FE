@@ -12,7 +12,7 @@ type SlideType = {
   description?: string | null;
 };
 
-type AllPlacesResponseType = {
+type PlaceResponseType = {
   preview?: {
     source: string;
     width: number;
@@ -20,6 +20,10 @@ type AllPlacesResponseType = {
   wikipedia_extracts?: {
     text: string;
   };
+}
+
+type AllPlacesResponseType = {
+  xid: string
 }
 
 const defaultCoords = {
@@ -38,11 +42,11 @@ const CountryImageGallery = ({ name = 'minsk' }) => {
     const getData = async () => {
       const geoNameData = await apiGet("geoname", "name=" + name) || defaultCoords;
       const placesQuery = `radius=3000&limit=8&offset=5&lon=${geoNameData.lon}&lat=${geoNameData.lat}&rate=2&format=json`;
-      apiGet(geoName, placesQuery).then(function (data: any) {
+      apiGet(geoName, placesQuery).then(function (data: AllPlacesResponseType[]) {
         if (!shouldCancel && data) {
           Promise.all(
-            data.map(async (res: any) => {
-              const data: AllPlacesResponseType = await apiGet(`xid/${res.xid}`, "");
+            data.map(async (item: AllPlacesResponseType) => {
+              const data: PlaceResponseType = await apiGet(`xid/${item.xid}`, "");
               if (data && data.preview) {
                 const { source, width } = data.preview;
                 if (source) {

@@ -6,16 +6,17 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { I18nContext } from 'react-i18next';
 
 const { useState, useEffect, useContext } = React;
+import { Capital } from './styles';
 
 type CapitalTimeProps = {
-  capitalName: string,
-  region: string,
+  capitalName: string;
+  region: string;
 };
 
 type DateTimeObj = {
-  value: number,
-  date: string,
-  time: string,
+  value: number;
+  date: string;
+  time: string;
 };
 
 const CapitalTime = (props: any) => {
@@ -41,13 +42,13 @@ const CapitalTime = (props: any) => {
     };
   }, [capitalName, region, dateTimeObj, lang]);
 
-  return (
-    dateTimeObj ? (
-      <div>
-        <span>{dateTimeObj.date}&nbsp;</span>
-        <span>{dateTimeObj.time}</span>
-      </div>
-    ) : <CircularProgress size={120} />
+  return dateTimeObj ? (
+    <Capital>
+      <span>{dateTimeObj.date}&nbsp;</span>
+      <span>{dateTimeObj.time}</span>
+    </Capital>
+  ) : (
+    <CircularProgress size={120} />
   );
 };
 

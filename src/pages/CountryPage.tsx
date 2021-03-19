@@ -129,9 +129,12 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
         <Toolbar>
           <Container maxWidth="md">
             <Box mt={4} mb={4}>
+              <Grid container direction="row" justify="space-between">
               <Weather startQuery={currentCountry.capital} t={t} lang={lang} />
+              <CapitalTime />
+              </Grid>
             </Box>
-            <CapitalTime />
+
           </Container>
         </Toolbar>
       </Box>

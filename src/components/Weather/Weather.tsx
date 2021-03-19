@@ -5,7 +5,7 @@ import { TextField } from '@material-ui/core';
 import { useStyles } from './Weather.style';
 import { fetchWeather } from './fetchWeather';
 
-const Weather = ({ startQuery = '' }) => {
+const Weather = ({ startQuery, t }: any) => {
   const classes = useStyles();
 
   const [query, setQuery] = React.useState(startQuery);
@@ -23,7 +23,7 @@ const Weather = ({ startQuery = '' }) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     getData();
   }, []);
 
@@ -31,7 +31,7 @@ const Weather = ({ startQuery = '' }) => {
     <div>
       <TextField
         id='filled-full-width'
-        label='Search city'
+        label={t('search')}
         style={{ margin: 8, marginLeft: 0 }}
         fullWidth
         InputLabelProps={{
@@ -50,10 +50,7 @@ const Weather = ({ startQuery = '' }) => {
           <div className={classes.content}>
             <div className={classes.item}>
               <div>
-                {weather.name}
-                {' '}
-                /
-                {weather.sys.country}
+                {t(weather.name)}&nbsp;/&nbsp;{weather.sys.country}
               </div>
               <div className={classes.temp}>
                 {Math.round(weather.main.temp)}
@@ -63,7 +60,7 @@ const Weather = ({ startQuery = '' }) => {
             </div>
             <div className={classes.item}>
               <img
-                src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
+                src={`https://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
                 className={classes.image}
               />
               <div className={classes.descr}>{weather.weather[0].main}</div>

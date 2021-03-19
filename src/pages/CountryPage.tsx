@@ -1,4 +1,5 @@
 import { RouteComponentProps, useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import * as React from 'react';
 import {
   Button, Box, Toolbar, Container, CircularProgress, Grid,
@@ -42,6 +43,7 @@ type CurrentCountryDataTypes = {
 
 export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   const { id } = match.params;
+  const { t } = useTranslation();
   const history = useHistory();
   const api = new CountryApiService();
   const currentCountry: CurrentCountryTypes | undefined = countries.find(
@@ -80,7 +82,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       <Polaroid>
         <CountryLogo src={currentCountry?.preview} alt={currentCountry.name} />
         <CountryContainer>
-          <CountryName>{currentCountry.name}</CountryName>
+          <CountryName>{t(currentCountry.name)}</CountryName>
         </CountryContainer>
       </Polaroid>
       <Box textAlign='center'>
@@ -91,7 +93,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
             history.goBack();
           }}
         >
-          Go back
+          {t('back')}
         </Button>
       </Box>
       <Box mt={4} mb={4}>
@@ -101,7 +103,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
               <Capital>
                 <CapitalImage src={currentCountry?.image} alt={currentCountry.capital} />
                 <CapitalContainer>
-                  <CountryName>{currentCountry.capital}</CountryName>
+                  <CountryName>{t(currentCountry.capital)}</CountryName>
                 </CapitalContainer>
               </Capital>
               <Box mt={4} mb={4} className='map-box'>
@@ -127,7 +129,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
         <Toolbar>
           <Container maxWidth='md'>
             <Box mt={4} mb={4}>
-              <Weather startQuery={currentCountry.capital} />
+              <Weather startQuery={currentCountry.capital} t={t}/>
             </Box>
           </Container>
         </Toolbar>

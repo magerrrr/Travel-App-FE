@@ -79,18 +79,18 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
           Go back
         </Button>
       </Box>
-      <Box textAlign="center">
-        {mapComponent}
-      </Box>
       <Box mt={4} mb={4}>
         <Toolbar>
           <Container maxWidth='md'>
-            <CountryImageGallery latlng={currentCountryData.latlng} />
+            <Box mt={4} mb={4} textAlign="center">
+              {mapComponent}
+            </Box>
+            <CountryImageGallery name={currentCountry.capital} />
           </Container>
         </Toolbar>
       </Box>
     </>
   ) : (
-    <CircularProgress size={120} />
+    <div className="overlay"><CircularProgress size={120} /></div>
   );
 };

@@ -22,16 +22,22 @@ type AllPlacesResponseType = {
   };
 }
 
-const CountryImageGallery = ({ latlng = [53, 27] }) => {
+const defaultCoords = {
+  lat: 53.9,
+  lon: 27.56667,
+}
+
+const CountryImageGallery = ({ name = 'minsk' }) => {
   const [images, setImages] = React.useState<SlideType[] | undefined>();
 
   React.useEffect(() => {
     let shouldCancel = false;
     let results: SlideType[] = [];
     const geoName = "radius";
-    const placesQuery = `radius=100000&limit=8&offset=10&lon=${latlng[0]}&lat=${latlng[1]}&rate=2&format=json`;
 
     const getData = async () => {
+      const geoNameData = await apiGet("geoname", "name=" + name) || defaultCoords;
+      const placesQuery = `radius=3000&limit=8&offset=5&lon=${geoNameData.lon}&lat=${geoNameData.lat}&rate=2&format=json`;
       apiGet(geoName, placesQuery).then(function (data: any) {
         if (!shouldCancel && data) {
           Promise.all(
@@ -59,9 +65,7 @@ const CountryImageGallery = ({ latlng = [53, 27] }) => {
         }
       });
     };
-    if (latlng) {
-      getData();
-    };
+    getData();
     return () => { shouldCancel = true };
   }, []);
 

@@ -28,6 +28,7 @@
     "@types/styled-components": "^5.1.9",
     "axios": "^0.21.1",
     "fontsource-roboto": "^4.0.0",
+    "google-translate-api-browser": "^1.1.71",
     "html-webpack-plugin": "^5.3.1",
     "i18next": "^19.9.2",
     "i18next-browser-languagedetector": "^6.0.1",

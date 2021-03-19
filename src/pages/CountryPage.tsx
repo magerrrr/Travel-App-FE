@@ -1,9 +1,7 @@
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as React from 'react';
-import {
-  Button, Box, Toolbar, Container, CircularProgress, Grid,
-} from '@material-ui/core';
+import { Button, Box, Toolbar, Container, CircularProgress, Grid } from '@material-ui/core';
 import CountryImageGallery from '../components/ImageGallery';
 import Video from '../components/Video';
 import Weather from '../components/Weather';
@@ -43,7 +41,8 @@ type CurrentCountryDataTypes = {
 
 export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   const { id } = match.params;
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.languages[0].split('-')[0];
   const history = useHistory();
   const api = new CountryApiService();
   const currentCountry: CurrentCountryTypes | undefined = countries.find(
@@ -85,10 +84,10 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
           <CountryName>{t(currentCountry.name)}</CountryName>
         </CountryContainer>
       </Polaroid>
-      <Box textAlign='center'>
+      <Box textAlign="center">
         <Button
-          variant='contained'
-          color='primary'
+          variant="contained"
+          color="primary"
           onClick={() => {
             history.goBack();
           }}
@@ -98,45 +97,45 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       </Box>
       <Box mt={4} mb={4}>
         <Toolbar>
-          <Container maxWidth='lg'>
-            <Grid container direction='row' justify='center'>
+          <Container maxWidth="lg">
+            <Grid container direction="row" justify="center">
               <Capital>
                 <CapitalImage src={currentCountry?.image} alt={currentCountry.capital} />
                 <CapitalContainer>
                   <CountryName>{t(currentCountry.capital)}</CountryName>
                 </CapitalContainer>
               </Capital>
-              <Box mt={4} mb={4} className='map-box'>
+              <Box mt={4} mb={4} className="map-box">
                 {mapComponent}
               </Box>
             </Grid>
           </Container>
         </Toolbar>
         <Toolbar>
-          <Container maxWidth='md'>
+          <Container maxWidth="md">
             <Box mt={4} mb={4}>
-              <CountryImageGallery name={currentCountry.capital} />
+              <CountryImageGallery name={currentCountry.capital} lang={lang} />
             </Box>
           </Container>
         </Toolbar>
         <Toolbar>
-          <Container maxWidth='md'>
+          <Container maxWidth="md">
             <Box mt={4} mb={4}>
               <Video embedId={currentCountry.embedId} />
             </Box>
           </Container>
         </Toolbar>
         <Toolbar>
-          <Container maxWidth='md'>
+          <Container maxWidth="md">
             <Box mt={4} mb={4}>
-              <Weather startQuery={currentCountry.capital} t={t}/>
+              <Weather startQuery={currentCountry.capital} t={t} lang={lang} />
             </Box>
           </Container>
         </Toolbar>
       </Box>
     </>
   ) : (
-    <div className='overlay'>
+    <div className="overlay">
       <CircularProgress size={120} />
     </div>
   );

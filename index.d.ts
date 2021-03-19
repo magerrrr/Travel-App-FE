@@ -10,3 +10,4 @@ declare module '*.png' {
 
 declare module 'react-leaflet-fullscreen';
 declare module 'react-image-gallery';
+declare module 'google-translate-api-browser';

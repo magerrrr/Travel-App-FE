@@ -1,6 +1,7 @@
 import * as React from 'react';
+
 import ImageGallery from 'react-image-gallery';
-import { apiGet } from '../../utils/galleryHelpers';
+import { apiGet, translateText } from '../../utils';
 
 import './ImageGallery.scss';
 
@@ -21,7 +22,7 @@ type PlaceResponseType = {
 };
 
 type AllPlacesResponseType = {
-  xid: string
+  xid: string;
 };
 
 const defaultCoords = {
@@ -29,7 +30,7 @@ const defaultCoords = {
   lon: 27.56667,
 };
 
-const CountryImageGallery = ({ name = 'minsk' }) => {
+const CountryImageGallery = ({ name = 'minsk', lang = 'en' }) => {
   const [images, setImages] = React.useState<SlideType[] | undefined>();
 
   React.useEffect(() => {
@@ -37,7 +38,7 @@ const CountryImageGallery = ({ name = 'minsk' }) => {
     const results: SlideType[] = [];
 
     const getData = async () => {
-      const geoNameData = await apiGet('geoname', `name=${name}`) || defaultCoords;
+      const geoNameData = (await apiGet('geoname', `name=${name}`)) || defaultCoords;
       const placesQuery = `radius=3000&limit=8&offset=5&lon=${geoNameData.lon}&lat=${geoNameData.lat}&rate=2&format=json`;
       apiGet('radius', placesQuery).then((placesData: AllPlacesResponseType[]) => {
         if (!shouldCancel && placesData) {
@@ -48,7 +49,10 @@ const CountryImageGallery = ({ name = 'minsk' }) => {
                 const { source, width } = data.preview;
                 if (source) {
                   const original = source.replace(`${width}px`, '920px');
-                  const description = data.wikipedia_extracts ? data.wikipedia_extracts.text : null;
+                  const description = await translateText(
+                    data.wikipedia_extracts ? data.wikipedia_extracts.text : null,
+                    lang,
+                  );
                   const place = {
                     original,
                     thumbnail: source,
@@ -68,7 +72,9 @@ const CountryImageGallery = ({ name = 'minsk' }) => {
       });
     };
     getData();
-    return () => { shouldCancel = true; };
+    return () => {
+      shouldCancel = true;
+    };
   }, []);
 
   return images ? <ImageGallery items={images} /> : null;

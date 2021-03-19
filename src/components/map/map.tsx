@@ -30,7 +30,7 @@ const MapComponent = (props: MapProps) => {
   } = props;
 
   const [isLoading, setIsLoading] = useState(true);
-  const [geoData, setGeoData] = useState<any>({ type: 'Feature', properties: {cca2: '' }, geometry:{ type: 'Polygon', coordinates: [[]] } });
+  const [geoData, setGeoData] = useState<any>({ type: 'Feature', properties: { cca2: '' }, geometry: { type: 'Polygon', coordinates: [[]] } });
 
   useEffect(() => {
     async function fetchData() {
@@ -60,7 +60,7 @@ const MapComponent = (props: MapProps) => {
 
   const content = isLoading ? <CircularProgress size={120} />
     : (
-      <Map id='mapid' center={capitalPosition} zoom={5} scrollWheelZoom={true}>
+      <Map id='mapid' center={capitalPosition} zoom={5} scrollWheelZoom>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'

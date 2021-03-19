@@ -63,16 +63,16 @@ const Header: React.FC = () => {
 
   return (
     <div className={classes.grow}>
-      <AppBar className={classes.header} position="static">
+      <AppBar className={classes.header} position='static'>
         <Toolbar>
-          <MyTypography className={classes.title} variant="h1" noWrap onClick={handleClick}>
+          <MyTypography className={classes.title} variant='h1' noWrap onClick={handleClick}>
             Travel App
           </MyTypography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <FormControl
-              variant="outlined"
-              className="lang-select"
+              variant='outlined'
+              className='lang-select'
               classes={{
                 root: classes.formControl,
               }}
@@ -86,33 +86,33 @@ const Header: React.FC = () => {
                 value={lang}
                 onChange={handleChangeLang}
               >
-                <MenuItem className={classes.menuItem} value="en">
+                <MenuItem className={classes.menuItem} value='en'>
                   EN
                 </MenuItem>
-                <MenuItem className={classes.menuItem} value="ru">
+                <MenuItem className={classes.menuItem} value='ru'>
                   RU
                 </MenuItem>
-                <MenuItem className={classes.menuItem} value="es">
+                <MenuItem className={classes.menuItem} value='es'>
                   ES
                 </MenuItem>
               </Select>
             </FormControl>
-            <Link className={classes.grow} component="button" variant="body2" onClick={() => {}}>
+            <Link className={classes.grow} component='button' variant='body2' onClick={() => {}}>
               {t('login')}
             </Link>
             <div>
               <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
+                aria-label='account of current user'
+                aria-controls='menu-appbar'
+                aria-haspopup='true'
                 onClick={handleMenu}
-                color="inherit"
+                color='inherit'
               >
                 {avatar}
                 <ArrowDropDownIcon />
               </IconButton>
               <Menu
-                id="menu-appbar"
+                id='menu-appbar'
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: 'top',

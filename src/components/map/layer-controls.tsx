@@ -11,7 +11,8 @@ const LayerViewControls = () => {
         name,
         url,
         attributes,
-        checked = false } = layout;
+        checked = false,
+      } = layout;
 
       return (
         <BaseLayer checked={checked} name={name} key={name}>
@@ -25,7 +26,7 @@ const LayerViewControls = () => {
   );
 
   return (
-    <LayersControl position="topright">
+    <LayersControl position='topright'>
       { baseLayers }
     </LayersControl>
   );

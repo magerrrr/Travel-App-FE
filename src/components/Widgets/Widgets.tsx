@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Weather from '../Weather';
 import Container from '@material-ui/core/Container';
+import Weather from '../Weather';
 
 const Widgets: React.FC = () => {
   return (

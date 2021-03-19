@@ -5,6 +5,7 @@ import { Button, Box, Toolbar, Container, CircularProgress, Grid } from '@materi
 import CountryImageGallery from '../components/ImageGallery';
 import Video from '../components/Video';
 import Weather from '../components/Weather';
+import CapitalTime from '../components/capital-time-widget';
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
 
@@ -130,6 +131,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
             <Box mt={4} mb={4}>
               <Weather startQuery={currentCountry.capital} t={t} lang={lang} />
             </Box>
+            <CapitalTime />
           </Container>
         </Toolbar>
       </Box>

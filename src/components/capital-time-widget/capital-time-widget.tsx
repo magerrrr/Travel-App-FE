@@ -18,7 +18,7 @@ type DateTimeObj = {
   time: string,
 };
 
-const CapitalTime = (props: CapitalTimeProps) => {
+const CapitalTime = (props: any) => {
   const { capitalName, region } = props;
   const [dateTimeObj, setDateTime] = useState<DateTimeObj>();
   const i18nContext = useContext(I18nContext);
@@ -44,7 +44,7 @@ const CapitalTime = (props: CapitalTimeProps) => {
   return (
     dateTimeObj ? (
       <div>
-        <span>{dateTimeObj.date}</span>
+        <span>{dateTimeObj.date}&nbsp;</span>
         <span>{dateTimeObj.time}</span>
       </div>
     ) : <CircularProgress size={120} />

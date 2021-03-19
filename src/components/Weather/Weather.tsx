@@ -12,41 +12,18 @@ const Weather = ({ startQuery, t, lang }: any) => {
   const [query, setQuery] = React.useState(startQuery);
   const [weather, setWeather] = React.useState<any>({});
 
-  const getData = async () => {
-    const data = await fetchWeather(query);
-    data.descr = await translateText(data.weather[0].main, lang);
-    setWeather(data);
-    setQuery('');
-  };
-
-  const search = async (e: any) => {
-    if (e.key === 'Enter') {
-      getData();
-    }
-  };
-
   useEffect(() => {
+    const getData = async () => {
+      const data = await fetchWeather(query);
+      data.descr = await translateText(data.weather[0].main, lang);
+      setWeather(data);
+      setQuery('');
+    };
     getData();
   }, []);
 
   return (
     <div>
-      <TextField
-        id="filled-full-width"
-        label={t('search')}
-        style={{ margin: 8, marginLeft: 0 }}
-        fullWidth
-        InputLabelProps={{
-          shrink: true,
-        }}
-        variant="filled"
-        type="text"
-        onChange={(e) => {
-          setQuery(e.target.value);
-        }}
-        onKeyPress={search}
-      />
-
       <Card className={classes.weather}>
         {(weather.main && (
           <div className={classes.content}>

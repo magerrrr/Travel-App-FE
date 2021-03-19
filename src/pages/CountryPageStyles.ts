@@ -8,6 +8,23 @@ const Polaroid = styled.div`
   border-radius: 20px;
 `;
 
+const Capital = styled.div`
+  margin: 32px 64px 64px 0;
+  width: 256px;
+  background-color: #525ae9;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  height: 380px;
+`;
+
+const CapitalImage = styled.img`
+  max-width: 100%;
+  width: 100%;
+  border-radius: 20px;
+  height: calc(100% - 4em);
+  object-fit: cover;
+`;
+
 const CountryLogo = styled.img`
   max-width: 100%;
   width: 100%;
@@ -15,13 +32,17 @@ const CountryLogo = styled.img`
   border-radius: 20px;
 `;
 
-const Container = styled.div`
+const CountryContainer = styled.div`
   text-align: center;
   padding: 10px 20px;
+`;
+
+const CapitalContainer = styled.div`
+  text-align: center;
 `;
 
 const CountryName = styled.p`
   color: white;
 `;
 
-export { Polaroid, CountryLogo, Container, CountryName };
+export { Polaroid, CountryLogo, CountryContainer, CountryName, Capital, CapitalImage, CapitalContainer };

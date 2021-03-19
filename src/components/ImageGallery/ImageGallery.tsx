@@ -37,12 +37,11 @@ const CountryImageGallery = ({ name = 'minsk' }) => {
   React.useEffect(() => {
     let shouldCancel = false;
     let results: SlideType[] = [];
-    const geoName = "radius";
 
     const getData = async () => {
-      const geoNameData = await apiGet("geoname", "name=" + name) || defaultCoords;
+      const geoNameData = await apiGet("geoname", `name=${name}`) || defaultCoords;
       const placesQuery = `radius=3000&limit=8&offset=5&lon=${geoNameData.lon}&lat=${geoNameData.lat}&rate=2&format=json`;
-      apiGet(geoName, placesQuery).then(function (data: AllPlacesResponseType[]) {
+      apiGet("radius", placesQuery).then(function (data: AllPlacesResponseType[]) {
         if (!shouldCancel && data) {
           Promise.all(
             data.map(async (item: AllPlacesResponseType) => {

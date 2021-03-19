@@ -1,11 +1,19 @@
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import * as React from 'react';
-import { Button, Box, Toolbar, Container, CircularProgress } from '@material-ui/core';
-import CountryImageGallery from "../components/ImageGallery";
+import { Button, Box, Toolbar, Container, CircularProgress, Grid } from '@material-ui/core';
+import CountryImageGallery from '../components/ImageGallery';
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
 
-import { Polaroid, CountryLogo, Container as CountryContainer, CountryName } from './CountryPageStyles';
+import {
+  Polaroid,
+  CountryLogo,
+  CountryContainer,
+  CountryName,
+  Capital,
+  CapitalImage,
+  CapitalContainer,
+} from './CountryPageStyles';
 import MapComponent from '../components/map';
 
 type TParams = { id: string };
@@ -18,14 +26,14 @@ type CurrentCountryTypes = {
 };
 
 type CurrentCountryDataTypes = {
-  name: string,
-  flag: string,
-  alpha3Code: string,
-  latlng: number[],
-  capital: string,
-  currencies: Object[],
-  region: string,
-}
+  name: string;
+  flag: string;
+  alpha3Code: string;
+  latlng: number[];
+  capital: string;
+  currencies: Object[];
+  region: string;
+};
 
 export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   const { id } = match.params;
@@ -58,7 +66,9 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       }}
       countryCode={currentCountryData.alpha3Code}
     />
-  ) : <CircularProgress size={120} />;
+  ) : (
+    <CircularProgress size={120} />
+  );
 
   return currentCountryData && currentCountry ? (
     <>
@@ -81,16 +91,32 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       </Box>
       <Box mt={4} mb={4}>
         <Toolbar>
-          <Container maxWidth='md'>
-            <Box mt={4} mb={4} textAlign="center">
-              {mapComponent}
+          <Container maxWidth="lg">
+            <Grid container direction="row" justify="center">
+              <Capital>
+                <CapitalImage src={currentCountry?.image} alt={currentCountry.capital} />
+                <CapitalContainer>
+                  <CountryName>{currentCountry.capital}</CountryName>
+                </CapitalContainer>
+              </Capital>
+              <Box mt={4} mb={4} className="map-box">
+                {mapComponent}
+              </Box>
+            </Grid>
+          </Container>
+        </Toolbar>
+        <Toolbar>
+          <Container maxWidth="md">
+            <Box mt={4} mb={4}>
+              <CountryImageGallery name={currentCountry.capital} />
             </Box>
-            <CountryImageGallery name={currentCountry.capital} />
           </Container>
         </Toolbar>
       </Box>
     </>
   ) : (
-    <div className="overlay"><CircularProgress size={120} /></div>
+    <div className="overlay">
+      <CircularProgress size={120} />
+    </div>
   );
 };

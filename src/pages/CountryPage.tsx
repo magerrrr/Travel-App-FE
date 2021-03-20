@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import * as React from 'react';
 import { Button, Box, Toolbar, Container, CircularProgress, Grid } from '@material-ui/core';
 import CountryImageGallery from '../components/ImageGallery';
-import Video from '../components/Video';
+import Video from '../components/video';
 import Weather from '../components/Weather';
 import CapitalTime from '../components/capital-time-widget';
 import CountryApiService from '../services/countryApiService';

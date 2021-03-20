@@ -13,8 +13,8 @@ const Polaroid = styled.div`
 const Capital = styled.div`
   margin: 32px 64px 64px 0;
   width: 256px;
-  background-color: #525ae9;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 3px 1px -1px #91b3fa, 0px 2px 2px 0px #91b3fa, 0px 2px 4px 0px #91b3fa;
+  color: #100774;
   border-radius: 20px;
   height: 380px;
 

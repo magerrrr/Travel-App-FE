@@ -132,17 +132,6 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
           <CountryName>{t(currentCountry.name)}</CountryName>
         </CountryContainer>
       </Polaroid>
-      <Box textAlign='center'>
-        <Button
-          variant='contained'
-          color='primary'
-          onClick={() => {
-            history.goBack();
-          }}
-        >
-          {t('back')}
-        </Button>
-      </Box>
       <Box mt={4} mb={4}>
         <Toolbar>
           <Container maxWidth='lg'>
@@ -151,7 +140,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
               <Capital>
                 <CapitalImage src={currentCountry?.image} alt={currentCountry.capital} />
                 <CapitalContainer>
-                  <CountryName>{t(currentCountry.capital)}</CountryName>
+                  <p>{t(currentCountry.capital)}</p>
                 </CapitalContainer>
               </Capital>
               <Box mt={4} mb={4} className='map-box'>

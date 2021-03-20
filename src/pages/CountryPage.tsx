@@ -12,6 +12,9 @@ import CapitalTime from '../components/capital-time-widget';
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
 import { wikiGet } from "../utils";
+import IconButton from '@material-ui/core/IconButton';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
 import {
   Polaroid,
@@ -52,6 +55,8 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   const history = useHistory();
   const api = new CountryApiService();
   const [descr, setDescr] = React.useState('');
+  const [fullDescr, setFullDescr] = React.useState(false);
+  const [shortDescr, setShortDescr] = React.useState(false);
   const currentCountry: CurrentCountryTypes | undefined = countries.find(
     (country) => country.id === +id,
   );
@@ -75,8 +80,10 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
     var dots = "...";
     if (text.length > limit) {
       text = text.substring(0, limit) + dots;
+      setShortDescr(true);
+    } else {
+      setShortDescr(false);
     }
-
     return text;
   }
 
@@ -86,11 +93,11 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       const wiki: any = await wikiGet(country, lang);
       const [first]: any = Object.keys(wiki.query.pages);
       const text = wiki.query.pages[first].extract;
-      setDescr(add3Dots(text, 500));
+      setDescr(fullDescr ? text : add3Dots(text, 500));
     };
 
     getDescription();
-  }, [lang]);
+  }, [lang, fullDescr]);
 
   const mapComponent = currentCountryData ? (
     <MapComponent
@@ -102,6 +109,18 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
     />
   ) : (
     <CircularProgress size={120} />
+  );
+
+  const expander = fullDescr ? (
+    <IconButton
+      onClick={() => setFullDescr(false)}
+      color='inherit'
+    ><ArrowDropUpIcon /></IconButton>
+  ) : (
+    <IconButton
+      onClick={() => setFullDescr(true)}
+      color='inherit'
+    ><ArrowDropDownIcon /></IconButton>
   );
 
   return currentCountryData && currentCountry ? (
@@ -126,7 +145,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       <Box mt={4} mb={4}>
         <Toolbar>
           <Container maxWidth='lg'>
-            <p>{descr}</p>
+            <p>{descr}{shortDescr && expander}</p>
             <Grid container direction='row' justify='center'>
               <Capital>
                 <CapitalImage src={currentCountry?.image} alt={currentCountry.capital} />

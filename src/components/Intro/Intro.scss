@@ -1,6 +1,6 @@
 $secondary-color: #91b3fa;
 
-#app {
+#app .intro, #app header {
   .MuiIconButton-root:hover {
     background-color: $secondary-color;
     opacity: 0.5;

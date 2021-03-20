@@ -12,6 +12,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   content: {
     display: 'flex',
     justifyContent: 'center',
+    ['@media (max-width: 400px)']: {
+      flexDirection: 'column',
+    },
   },
 
   item: {

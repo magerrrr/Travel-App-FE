@@ -3,7 +3,7 @@ import * as moment from 'moment-timezone';
 import 'moment/locale/es';
 import 'moment/locale/ru';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { CircularProgress, Box } from '@material-ui/core';
 import { I18nContext } from 'react-i18next';
 import { Capital } from './styles';
 
@@ -46,7 +46,9 @@ const CapitalTime = (props: CapitalTimeProps) => {
   return dateTimeObj ? (
     <Capital>
       <span>{dateTimeObj.date}</span>
-      <AccessTimeIcon />
+      <Box mt={1} mb={1}>
+        <AccessTimeIcon />
+      </Box>
       <span>{dateTimeObj.time}</span>
     </Capital>
   ) : (

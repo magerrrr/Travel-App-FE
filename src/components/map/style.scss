@@ -1,7 +1,14 @@
 #mapid { 
   min-height: 700px;
+  @media (max-width: 736px) {
+            height: 500px;
+        }
 }
 
 .map-box {
   width: 50%;
+  @media (max-width: 736px) {
+          width: 100%;
+      }
 }
+

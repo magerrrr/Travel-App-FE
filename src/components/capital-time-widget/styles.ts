@@ -6,7 +6,6 @@ const Capital = styled.div`
   color: white;
   padding: 20px 15px;
   font-size: 20px;
-  width: 30%;
   border-radius: 4px;
   display: flex;
   flex-direction: column;

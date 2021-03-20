@@ -7,6 +7,7 @@ import {
 import CountryImageGallery from '../components/ImageGallery';
 import Video from '../components/video';
 import Weather from '../components/Weather';
+import Exchange from '../components/Exchange';
 import CapitalTime from '../components/capital-time-widget';
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
@@ -19,6 +20,7 @@ import {
   Capital,
   CapitalImage,
   CapitalContainer,
+  WidgetsGrid
 } from './CountryPageStyles';
 import MapComponent from '../components/map';
 
@@ -131,10 +133,17 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
         <Toolbar>
           <Container maxWidth='md'>
             <Box mt={4} mb={4}>
-              <Grid container direction='row' justify='space-between'>
-                <Weather query={currentCountry.capital} lang={lang} />
-                <CapitalTime capitalName={currentCountryData.capital} region={currentCountryData.region} />
-              </Grid>
+              <WidgetsGrid container direction='row' justify='space-between' spacing={2}>
+                <Grid item xs={5}>
+                  <Weather query={currentCountry.capital} lang={lang} />
+                </Grid>
+                <Grid item xs={3}>
+                  <Exchange />
+                </Grid>
+                <Grid item xs={4}>
+                  <CapitalTime capitalName={currentCountryData.capital} region={currentCountryData.region} />
+                </Grid>
+              </WidgetsGrid>
             </Box>
           </Container>
         </Toolbar>

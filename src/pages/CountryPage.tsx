@@ -11,6 +11,7 @@ import Exchange from '../components/Exchange';
 import CapitalTime from '../components/capital-time-widget';
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
+import { wikiGet } from "../utils";
 
 import {
   Polaroid,
@@ -20,7 +21,7 @@ import {
   Capital,
   CapitalImage,
   CapitalContainer,
-  WidgetsGrid
+  WidgetsGrid,
 } from './CountryPageStyles';
 import MapComponent from '../components/map';
 
@@ -50,6 +51,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   const lang = i18n.languages[0].split('-')[0];
   const history = useHistory();
   const api = new CountryApiService();
+  const [descr, setDescr] = React.useState('');
   const currentCountry: CurrentCountryTypes | undefined = countries.find(
     (country) => country.id === +id,
   );
@@ -68,6 +70,27 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
 
     getData();
   }, []);
+
+  const add3Dots = (text: string, limit: number) => {
+    var dots = "...";
+    if (text.length > limit) {
+      text = text.substring(0, limit) + dots;
+    }
+
+    return text;
+  }
+
+  React.useEffect(() => {
+    const getDescription = async () => {
+      const country: any = t(currentCountry?.name as string) || '';
+      const wiki: any = await wikiGet(country, lang);
+      const [first]: any = Object.keys(wiki.query.pages);
+      const text = wiki.query.pages[first].extract;
+      setDescr(add3Dots(text, 500));
+    };
+
+    getDescription();
+  }, [lang]);
 
   const mapComponent = currentCountryData ? (
     <MapComponent
@@ -103,6 +126,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       <Box mt={4} mb={4}>
         <Toolbar>
           <Container maxWidth='lg'>
+            <p>{descr}</p>
             <Grid container direction='row' justify='center'>
               <Capital>
                 <CapitalImage src={currentCountry?.image} alt={currentCountry.capital} />

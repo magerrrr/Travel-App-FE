@@ -27,7 +27,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
     currentCountryData,
     setCurrentCountryData,
   ] = React.useState<CurrentCountryDataTypes | null>(null);
-
+  console.log(currentCountryData);
   React.useEffect(() => {
     const getData = async () => {
       // @ts-ignore

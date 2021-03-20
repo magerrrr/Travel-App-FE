@@ -1,9 +1,8 @@
 import * as React from 'react';
+import axios from 'axios';
 import { Card } from '@material-ui/core';
 import { FC, useState, useEffect } from 'react';
 import { useStyles } from './ExchangeRates.style';
-import axios from 'axios';
-import CountryApiService from '../../services/countryApiService';
 
 const URL = 'https://api.exchangerate.host/latest?base=';
 
@@ -11,90 +10,43 @@ const USD = 'USD';
 const EUR = 'EUR';
 const RUB = 'RUB';
 
-const Exchange: FC = () => {
+const Exchange: FC = ({ codeCurrency = 'BYN' }) => {
   const classes = useStyles();
-  const [code, setCode] = useState('');
   const [ratesListUSD, setRatesListUSD] = useState([]);
   const [ratesListEUR, setRatesListEUR] = useState([]);
   const [ratesListRUB, setRatesListRUB] = useState([]);
 
-  //get services api
-  const api = new CountryApiService();
-  type CurrentCountryDataTypes = {
-    id: number;
-    name: string;
-    capital: string;
-    image: string;
-    preview?: string;
+  const getRates = async (base: string) => {
+    const { data } = await axios.get(`${URL}${base}`);
+    const { rates } = data;
+    const ratesTemp = [] as any;
+    Object.entries(rates).forEach(([symbol, rate]) => {
+      ratesTemp.push({ symbol, rate });
+    });
+    return ratesTemp;
   };
 
-  const [currentCountryData, setCurrentCountryData] = useState<CurrentCountryDataTypes | null>(
-    null,
-  );
-
   useEffect(() => {
-    const getData = async () => {
-      const fetchedData = await api.getCountryData('Belarus');
-      setCurrentCountryData(fetchedData);
-      setCode(fetchedData.currencies[0].code);
+    const getAllRates = async () => {
+      setRatesListEUR(await getRates(EUR));
+      setRatesListUSD(await getRates(USD));
+      setRatesListRUB(await getRates(RUB));
     };
-
-    getData();
-  }, []);
-
-  useEffect(() => {
-    const getRates = async () => {
-      const { data } = await axios.get(`${URL}${USD}`);
-      const rates: [] = data.rates;
-      const ratesTemp = [] as any;
-      for (const [symbol, rate] of Object.entries(rates)) {
-        ratesTemp.push({ symbol, rate });
-      }
-      setRatesListUSD(ratesTemp);
-    };
-    getRates();
-  }, []);
-
-  useEffect(() => {
-    const getRates = async () => {
-      const { data } = await axios.get(`${URL}${EUR}`);
-      const rates: [] = data.rates;
-      console.log(rates);
-      const ratesTemp = [] as any;
-      for (const [symbol, rate] of Object.entries(rates)) {
-        ratesTemp.push({ symbol, rate });
-      }
-      setRatesListEUR(ratesTemp);
-    };
-    getRates();
-  }, []);
-
-  useEffect(() => {
-    const getRates = async () => {
-      const { data } = await axios.get(`${URL}${RUB}`);
-      const rates: [] = data.rates;
-      const ratesTemp = [] as any;
-      for (const [symbol, rate] of Object.entries(rates)) {
-        ratesTemp.push({ symbol, rate });
-      }
-      setRatesListRUB(ratesTemp);
-    };
-    getRates();
+    getAllRates();
   }, []);
 
   return (
     <Card className={classes.exchange}>
       {}
-      <div className={classes.exchangeCurrent}>
-        {currentCountryData !== null ? currentCountryData.currencies[0].code : 'BYN'}
-      </div>
+      <div className={classes.exchangeCurrent}>{codeCurrency !== null ? codeCurrency : 'BYN'}</div>
       <div className={classes.item}>
         <div>USD $</div>
         <div>
           {ratesListUSD.map((item: any) => {
-            if (item.symbol === code) {
+            if (item.symbol === codeCurrency) {
               return item.rate.toFixed(3);
             }
+            return null;
           })}
         </div>
       </div>
@@ -102,9 +54,10 @@ const Exchange: FC = () => {
         <div>RUB &#8381;</div>
         <div>
           {ratesListRUB.map((item: any) => {
-            if (item.symbol === code) {
+            if (item.symbol === codeCurrency) {
               return item.rate.toFixed(3);
             }
+            return null;
           })}
         </div>
       </div>
@@ -113,9 +66,10 @@ const Exchange: FC = () => {
         <div>
           {' '}
           {ratesListEUR.map((item: any) => {
-            if (item.symbol === code) {
+            if (item.symbol === codeCurrency) {
               return item.rate.toFixed(3);
             }
+            return null;
           })}
         </div>
       </div>

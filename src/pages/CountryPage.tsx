@@ -25,6 +25,7 @@ import {
   CapitalImage,
   CapitalContainer,
   WidgetsGrid,
+  Description,
 } from './CountryPageStyles';
 import MapComponent from '../components/map';
 
@@ -145,7 +146,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       <Box mt={4} mb={4}>
         <Toolbar>
           <Container maxWidth='lg'>
-            <p>{descr}{shortDescr && expander}</p>
+            <Description>{descr}{shortDescr && expander}</Description>
             <Grid container direction='row' justify='center'>
               <Capital>
                 <CapitalImage src={currentCountry?.image} alt={currentCountry.capital} />

@@ -54,6 +54,10 @@ const CountryName = styled.p`
   color: white;
 `;
 
+const Description = styled.p`
+  text-indent: 20px;
+`;
+
 const WidgetsGrid = styled(Grid)({
   ['@media (max-width: 600px)']: {
     flexDirection: 'column',
@@ -95,4 +99,5 @@ export {
   CapitalImage,
   CapitalContainer,
   WidgetsGrid,
+  Description,
 };

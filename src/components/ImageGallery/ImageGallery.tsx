@@ -1,5 +1,7 @@
 import * as React from 'react';
-
+import {
+  CircularProgress,
+} from '@material-ui/core';
 import ImageGallery from 'react-image-gallery';
 import { apiGet, translateText } from '../../utils';
 
@@ -32,6 +34,7 @@ const defaultCoords = {
 
 const CountryImageGallery = ({ name = 'minsk', lang = 'en' }) => {
   const [images, setImages] = React.useState<SlideType[] | undefined>();
+  const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
     let shouldCancel = false;
@@ -77,7 +80,19 @@ const CountryImageGallery = ({ name = 'minsk', lang = 'en' }) => {
     };
   }, []);
 
-  return images ? <ImageGallery items={images} /> : null;
+  const gallery = images
+    ? <ImageGallery items={images} onImageLoad={() => setCount(count => count + 1)} />
+    : null;
+  const loader = (!images || count < images.length)
+    ? <div className='overlay'><CircularProgress size={120} /></div>
+    : null;
+
+  return (
+    <>
+      {loader}
+      {gallery}
+    </>
+  );
 };
 
 export default CountryImageGallery;

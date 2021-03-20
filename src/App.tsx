@@ -1,6 +1,10 @@
 import * as React from 'react';
+import { Suspense } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {
+  CircularProgress,
+} from '@material-ui/core';
 import './i18n/config';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
@@ -32,13 +36,15 @@ const App: React.FC = () => {
     <Router>
       <I18nextProvider i18n={i18n}>
         <MuiThemeProvider theme={theme}>
-          <Header />
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/country/:id' component={CountryPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
-          <Footer />
+          <Suspense fallback={<div className='overlay'><CircularProgress size={120} /></div>}>
+            <Header />
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/country/:id' component={CountryPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+            <Footer />
+          </Suspense>
         </MuiThemeProvider>
       </I18nextProvider>
     </Router>

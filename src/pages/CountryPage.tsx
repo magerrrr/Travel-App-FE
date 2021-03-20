@@ -1,6 +1,7 @@
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as React from 'react';
+import { useImage } from 'react-image';
 import {
   Button, Box, Toolbar, Container, CircularProgress, Grid,
 } from '@material-ui/core';
@@ -61,7 +62,9 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   const currentCountry: CurrentCountryTypes | undefined = countries.find(
     (country) => country.id === +id,
   );
-
+  const { src: preview } = useImage({
+    srcList: currentCountry?.preview || [],
+  });
   const [
     currentCountryData,
     setCurrentCountryData,
@@ -127,7 +130,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   return currentCountryData && currentCountry ? (
     <>
       <Polaroid>
-        <CountryLogo src={currentCountry?.preview} alt={currentCountry.name} />
+        <CountryLogo src={preview} alt={currentCountry.name} />
         <CountryContainer>
           <CountryName>{t(currentCountry.name)}</CountryName>
         </CountryContainer>

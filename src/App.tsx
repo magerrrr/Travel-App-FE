@@ -12,6 +12,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import './App.scss';
+import Exchange from './components/Exchange';
 
 const theme = createMuiTheme({
   typography: {
@@ -32,6 +33,7 @@ const App: React.FC = () => {
       <I18nextProvider i18n={i18n}>
         <MuiThemeProvider theme={theme}>
           <Header />
+          <Exchange />
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/country/:id" component={CountryPage} />

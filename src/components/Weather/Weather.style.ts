@@ -27,5 +27,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   descr: {
     fontSize: '15px',
+    textTransform: 'capitalize',
   },
 }));

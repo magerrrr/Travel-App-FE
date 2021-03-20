@@ -5,9 +5,9 @@ import 'moment/locale/ru';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { I18nContext } from 'react-i18next';
+import { Capital } from './styles';
 
 const { useState, useEffect, useContext } = React;
-import { Capital } from './styles';
 
 type CapitalTimeProps = {
   capitalName: string;
@@ -20,7 +20,7 @@ type DateTimeObj = {
   time: string;
 };
 
-const CapitalTime = (props: any) => {
+const CapitalTime = (props: CapitalTimeProps) => {
   const { capitalName, region } = props;
   const [dateTimeObj, setDateTime] = useState<DateTimeObj>();
   const i18nContext = useContext(I18nContext);

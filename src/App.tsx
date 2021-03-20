@@ -33,8 +33,8 @@ const App: React.FC = () => {
         <MuiThemeProvider theme={theme}>
           <Header />
           <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/country/:id" component={CountryPage} />
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/country/:id' component={CountryPage} />
             <Route component={NotFoundPage} />
           </Switch>
           <Footer />

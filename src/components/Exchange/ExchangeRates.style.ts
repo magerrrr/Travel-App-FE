@@ -22,5 +22,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   exchangeCurrent: {
     display: 'flex',
     justifyContent: 'center',
+    marginBottom: 10,
   },
 }));

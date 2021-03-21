@@ -81,7 +81,7 @@ const CountryImageGallery = ({ name = 'minsk', lang = 'en' }) => {
   }, []);
 
   const gallery = images
-    ? <ImageGallery items={images} onImageLoad={() => setCount(count => count + 1)} />
+    ? <ImageGallery items={images} onImageLoad={() => setCount((count) => count + 1)} />
     : null;
   const loader = (!images || count < images.length)
     ? <div className='overlay'><CircularProgress size={120} /></div>

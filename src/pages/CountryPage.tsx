@@ -1,10 +1,12 @@
-import { RouteComponentProps, useHistory } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as React from 'react';
 import { useImage } from 'react-image';
 import {
-  Button, Box, Toolbar, Container, CircularProgress, Grid,
+  Box, Toolbar, Container, CircularProgress, Grid, IconButton,
 } from '@material-ui/core';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import CountryImageGallery from '../components/ImageGallery';
 import Video from '../components/video';
 import Weather from '../components/Weather';
@@ -12,10 +14,7 @@ import Exchange from '../components/Exchange';
 import CapitalTime from '../components/capital-time-widget';
 import CountryApiService from '../services/countryApiService';
 import { countries } from '../components/CountryCardsContainer/stubs';
-import { wikiGet } from "../utils";
-import IconButton from '@material-ui/core/IconButton';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import { wikiGet } from '../utils';
 
 import {
   Polaroid,
@@ -39,6 +38,11 @@ type CurrentCountryTypes = {
   preview?: string;
   embedId: string;
 };
+type Currency = {
+  code: string;
+  name: string;
+  symbol: string;
+};
 
 type CurrentCountryDataTypes = {
   name: string;
@@ -46,7 +50,7 @@ type CurrentCountryDataTypes = {
   alpha3Code: string;
   latlng: number[];
   capital: string;
-  currencies: Object[];
+  currencies: Currency[];
   region: string;
 };
 
@@ -54,7 +58,6 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   const { id } = match.params;
   const { t, i18n } = useTranslation();
   const lang = i18n.languages[0].split('-')[0];
-  const history = useHistory();
   const api = new CountryApiService();
   const [descr, setDescr] = React.useState('');
   const [fullDescr, setFullDescr] = React.useState(false);
@@ -81,15 +84,16 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
   }, []);
 
   const add3Dots = (text: string, limit: number) => {
-    var dots = "...";
+    const dots = '...';
+    let resultText = text;
     if (text.length > limit) {
-      text = text.substring(0, limit) + dots;
+      resultText = text.substring(0, limit) + dots;
       setShortDescr(true);
     } else {
       setShortDescr(false);
     }
-    return text;
-  }
+    return resultText;
+  };
 
   React.useEffect(() => {
     const getDescription = async () => {
@@ -119,12 +123,16 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
     <IconButton
       onClick={() => setFullDescr(false)}
       color='inherit'
-    ><ArrowDropUpIcon /></IconButton>
+    >
+      <ArrowDropUpIcon />
+    </IconButton>
   ) : (
     <IconButton
       onClick={() => setFullDescr(true)}
       color='inherit'
-    ><ArrowDropDownIcon /></IconButton>
+    >
+      <ArrowDropDownIcon />
+    </IconButton>
   );
 
   return currentCountryData && currentCountry ? (
@@ -138,7 +146,10 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
       <Box mt={4} mb={4}>
         <Toolbar>
           <Container maxWidth='lg'>
-            <Description>{descr}{shortDescr && expander}</Description>
+            <Description>
+              {descr}
+              {shortDescr && expander}
+            </Description>
             <Grid container direction='row' justify='center'>
               <Capital>
                 <CapitalImage src={currentCountry?.image} alt={currentCountry.capital} />
@@ -174,7 +185,7 @@ export const CountryPage = ({ match }: RouteComponentProps<TParams>) => {
                   <Weather query={currentCountry.capital} lang={lang} />
                 </Grid>
                 <Grid item xs={3}>
-                  <Exchange />
+                  <Exchange code={currentCountryData.currencies[0].code} />
                 </Grid>
                 <Grid item xs={4}>
                   <CapitalTime capitalName={currentCountryData.capital} region={currentCountryData.region} />
